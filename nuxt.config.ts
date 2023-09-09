@@ -4,4 +4,5 @@ export default defineNuxtConfig({
         '@element-plus/nuxt',
         '@pinia/nuxt',
     ],
+    css: ['~/assets/scss/kopailay.scss']
 })
