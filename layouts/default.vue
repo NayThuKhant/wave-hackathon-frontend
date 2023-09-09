@@ -1,9 +1,14 @@
 <template>
-  <div style="max-width: 480px; background-color: #c6538c; margin: auto; padding: 0;">
+  <div class="container">
     <slot />
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+.container {
+  max-width: 480px;
+  margin: auto;
+}
+</style>
 
 <script>
 </script>
