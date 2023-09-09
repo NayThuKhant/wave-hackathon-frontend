@@ -12,5 +12,12 @@
     "@element-plus/nuxt": "^1.0.5",
     "element-plus": "^2.3.12",
     "nuxt": "^3.7.1"
+  },
+  "overrides": {
+    "vue": "latest"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "pinia": "^2.1.6"
   }
 }
