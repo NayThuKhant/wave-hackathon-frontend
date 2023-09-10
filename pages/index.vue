@@ -22,6 +22,7 @@ const dummyData = {
 const storeResponseData = (context) => {
   console.log(context.response._data)
   store.setToken(context.response._data.token)
+  store.setUserData(context.response._data.user)
 }
 const login = async () => {
   const { data: loginResponse } = await useAsyncData('login',() => {
@@ -34,7 +35,7 @@ const login = async () => {
     })
   })
 }
-onMounted(() => {
+onBeforeMount(() => {
   login()
 })
 </script>
