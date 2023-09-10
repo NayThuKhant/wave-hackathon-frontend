@@ -8,8 +8,9 @@
   </div>
 </template>
 <script setup>
+const props = defineProps(['to'])
 const goBack = () => {
-  console.log('go back')
+  navigateTo(props.to)
 }
 </script>
 

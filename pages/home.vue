@@ -3,9 +3,9 @@
   <div style="margin-top: 50px">
     <el-button type="primary">Primary</el-button>
   </div>
-  <BaseFooter></BaseFooter>
+  <BaseFooter :active="'home'"></BaseFooter>
 </template>
 
-<script>
+<script setup>
 
 </script>

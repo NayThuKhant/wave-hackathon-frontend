@@ -3,7 +3,7 @@
   <div style="margin-top: 50px">
     <el-button type="primary">Profile</el-button>
   </div>
-  <BaseFooter></BaseFooter>
+  <BaseFooter :active="'profile'"></BaseFooter>
 </template>
 
 <script setup>

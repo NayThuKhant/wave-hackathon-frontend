@@ -26,13 +26,10 @@
 
 <script setup>
 import {HomeFilled, List, User} from "@element-plus/icons-vue";
-import { navigationStore } from "~/stores/footerstore";
 
-const route = useRoute()
-const store = navigationStore()
-const activeTab = store.active
+const props = defineProps(['active'])
+const activeTab = props.active
 const brSharLal = async (route) => {
-  await store.setActive(route)
   navigateTo(route)
 }
 </script>
