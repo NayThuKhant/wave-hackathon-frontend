@@ -15,9 +15,7 @@
 </template>
 
 <script setup>
-import Carousel from "~/components/Carousel.vue";
-import SearchBar from "~/components/SearchBar.vue";
-import Services from "~/components/Services.vue";
+
 </script>
 
 <style scoped lang="scss">

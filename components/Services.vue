@@ -61,23 +61,14 @@
     </el-card>
   </div>
 </template>
-<script>
+<script setup>
 import { ArrowRight, Position } from "@element-plus/icons-vue";
-export default {
-  components: {
-    ArrowRight,
-    Position,
-  },
-  data() {
-    return {
-      users: [
-        { name: "John Doe", service: "Laundry" },
-        { name: "Jane Smith", service: "Cleaning" },
-        { name: "Bob Johnson", service: "Laundry" },
-      ],
-    };
-  },
-};
+
+const users = ref([
+  { name: "John Doe", service: "Laundry" },
+  { name: "Jane Smith", service: "Cleaning" },
+  { name: "Bob Johnson", service: "Laundry" },
+],)
 </script>
 
 <style lang="scss">

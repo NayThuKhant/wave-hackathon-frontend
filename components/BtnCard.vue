@@ -17,25 +17,21 @@
   </el-card>
 </template>
 
-<script>
+<script setup>
 import { ArrowRight, User } from "@element-plus/icons-vue";
-export default {
-  props: {
-    UserName: {
-      type: String,
-      required: true,
-    },
-    serviceName: {
-      type: String,
-      required: true,
-    },
+
+const props = defineProps({
+  UserName: {
+    type: String,
+    required: true
   },
-  components: {
-    ArrowRight,
-    User,
-  },
-};
+  serviceName: {
+    type: String,
+    required: true
+  }
+})
 </script>
+
 <style lang="scss">
 .card-container {
   width: 100%;

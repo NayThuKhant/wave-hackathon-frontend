@@ -13,24 +13,14 @@
   </el-input>
 </template>
 
-<script>
+<script setup>
 import { Search } from "@element-plus/icons-vue";
-export default {
-  components: {
-    Search,
-  },
-  data() {
-    return {
-      searchQuery: "",
-    };
-  },
-  methods: {
-    clearSearch() {
-      this.searchQuery = "";
-    },
-  },
-};
+
+const searchQuery = ref('')
+
+const clearSearch = () => searchQuery.value = ''
 </script>
+
 <style lang="scss">
 .search-bar .el-input__wrapper {
   border-radius: 8px;
