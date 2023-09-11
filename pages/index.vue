@@ -1,5 +1,6 @@
 <template>
-  <div v-loading.fullscreen.lock="loading">
+  <div v-loading.fullscreen.lock="loading"
+  element-loading-text="Authenticating...">
 
   </div>
 </template>
@@ -20,9 +21,10 @@ const dummyData = {
 }
 
 const storeResponseData = (context) => {
-  console.log(context.response._data)
   store.setToken(context.response._data.token)
   store.setUserData(context.response._data.user)
+
+  navigateTo('home')
 }
 const login = async () => {
   const { data: loginResponse } = await useAsyncData('login',() => {
