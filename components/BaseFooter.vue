@@ -13,14 +13,14 @@
 <!--        <el-icon :color="activeTab === 'history' ? 'blue': 'gray'">-->
 <!--          <List />-->
 <!--        </el-icon>-->
-        <img alt="home-icon" src="@/assets/images/history-gray.svg" />
+        <img alt="home-icon" :src="isActive('history')" />
         <p>History</p>
       </div>
       <div class="navbar-item" @click="brSharLal('profile')">
 <!--        <el-icon :color="activeTab === 'profile' ? 'blue': 'gray'">-->
 <!--          <User />-->
 <!--        </el-icon>-->
-        <img alt="home-icon" src="@/assets/images/profile-gray.svg" />
+        <img alt="home-icon" :src="isActive('profile')" />
         <p>Profile</p>
       </div>
     </div>

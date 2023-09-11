@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+    ssr: false,
     //devtools: { enabled: true },
     runtimeConfig: {
         // Private config that is only available on the server
