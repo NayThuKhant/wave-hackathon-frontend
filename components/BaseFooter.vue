@@ -3,21 +3,24 @@
     <!-- Navigation content goes here -->
     <div class="navbar">
       <div class="navbar-item" @click="brSharLal('home')">
-        <el-icon :color="activeTab === 'home' ? 'blue': 'gray'">
-          <HomeFilled />
-        </el-icon>
+<!--        <el-icon :color="activeTab === 'home' ? 'blue': 'gray'">-->
+<!--          <HomeFilled />-->
+<!--        </el-icon>-->
+        <img alt="home-icon" :src="isActive('home')" />
         <p>Home</p>
       </div>
       <div class="navbar-item" @click="brSharLal('history')">
-        <el-icon :color="activeTab === 'history' ? 'blue': 'gray'">
-          <List />
-        </el-icon>
+<!--        <el-icon :color="activeTab === 'history' ? 'blue': 'gray'">-->
+<!--          <List />-->
+<!--        </el-icon>-->
+        <img alt="home-icon" src="@/assets/images/history-gray.svg" />
         <p>History</p>
       </div>
       <div class="navbar-item" @click="brSharLal('profile')">
-        <el-icon :color="activeTab === 'profile' ? 'blue': 'gray'">
-          <User />
-        </el-icon>
+<!--        <el-icon :color="activeTab === 'profile' ? 'blue': 'gray'">-->
+<!--          <User />-->
+<!--        </el-icon>-->
+        <img alt="home-icon" src="@/assets/images/profile-gray.svg" />
         <p>Profile</p>
       </div>
     </div>
@@ -31,6 +34,10 @@ const props = defineProps(['active'])
 const activeTab = props.active
 const brSharLal = async (route) => {
   navigateTo(route)
+}
+
+const isActive = (name) => {
+  return activeTab === name ? "_nuxt/assets/images/" + name + "-blue.svg" : "_nuxt/assets/images/" + name + "-gray.svg"
 }
 </script>
 
