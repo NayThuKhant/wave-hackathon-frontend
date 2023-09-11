@@ -9,6 +9,7 @@
 import {useAsyncData} from "#app";
 import { authStore } from "~/stores/authStore";
 
+const config = useRuntimeConfig()
 const store = authStore()
 const loading = ref(true)
 const dummyData = {
@@ -28,7 +29,7 @@ const storeResponseData = (context) => {
 }
 const login = async () => {
   const { data: loginResponse } = await useAsyncData('login',() => {
-    $fetch(`http://whbackend.local/api/auth/login`, {
+    $fetch(`${config.public.backendApi}auth/login`, {
       method: 'POST',
       body: dummyData,
       onResponse(context) {
