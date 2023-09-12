@@ -3,8 +3,10 @@ body {
     margin: 0;
     font-family: Manrope, sans-serif;
 }
-
+.el-popup-parent--hidden {
+    width: 100% !important;
+}
 @font-face {
     font-family: Manrope;
-    src: url('/fonts/Manrope-VariableFont_wght.ttf') format('ttf');
+    src: url("/fonts/Manrope-VariableFont_wght.ttf") format("ttf");
 }

@@ -1,11 +1,133 @@
 <template>
   <TopHeader></TopHeader>
-  <div style="margin-top: 50px">
-    <el-button type="primary">Profile</el-button>
+  <div style="margin: 50px 20px 70px 20px">
+    <div class="profile-card" style="display: flex; align-items: center">
+      <el-avatar class="card-user"><User /></el-avatar>
+      <div style="margin-left: 20px">
+        <span
+          style="
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 600;
+          "
+          >{{ userProfile.name }}</span
+        >
+        <el-text style="font-size: 12px">{{ userProfile.phone }}</el-text>
+      </div>
+    </div>
+
+    <!-- User Information -->
+    <div class="profile-card">
+      <el-text
+        style="
+          font-size: 16px;
+          margin-bottom: 10px;
+          display: block;
+          font-weight: 600;
+          text-align: left;
+          color: black;
+        "
+        >Settings</el-text
+      >
+      <div class="setting">
+        <el-text class="des-title"
+          ><el-icon class="setting-icon"
+            ><el-image src="/images/briefcase.svg" /></el-icon
+          >Employee Profile</el-text
+        >
+        <el-link
+          :underline="false"
+          style="
+            font-size: 14px;
+            font-weight: 500;
+            text-align: right;
+            color: #3188e1;
+          "
+          >Join</el-link
+        >
+      </div>
+      <div class="setting">
+        <el-text class="des-title"
+          ><el-icon class="setting-icon"
+            ><el-image src="/images/terms.svg" /></el-icon
+          >Terms & Conditions</el-text
+        >
+        <el-icon><ArrowRightBold /></el-icon>
+      </div>
+      <div class="setting">
+        <el-text class="des-title"
+          ><el-icon class="setting-icon"
+            ><el-image src="/images/faqs.svg" /></el-icon
+          >FAQs</el-text
+        >
+        <el-icon><ArrowRightBold /></el-icon>
+      </div>
+      <div class="setting">
+        <el-text class="des-title"
+          ><el-icon class="setting-icon"
+            ><el-image src="/images/globe.svg"
+          /></el-icon>
+          Languages</el-text
+        >
+        <el-link
+          :underline="false"
+          style="font-size: 14px; font-weight: 500; text-align: right"
+          >English</el-link
+        >
+      </div>
+    </div>
   </div>
   <BaseFooter :active="'profile'"></BaseFooter>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import {
+  Suitcase,
+  User,
+  ArrowRightBold,
+  Document,
+  QuestionFilled,
+} from "@element-plus/icons-vue";
 
+const userProfile = ref({
+  name: "John Doe",
+  phone: "0912345678",
+  profilePicture: "https://example.com/profile.jpg",
+  about: "I'm a software developer.",
+  address: "123 Main St, City, Country",
+});
 </script>
+<style lang="scss">
+.profile-card {
+  border-radius: 8px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+}
+.cell-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  cursor: pointer;
+}
+.setting-icon {
+  margin-right: 8px;
+  font-size: 18px;
+}
+.des-title {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: black;
+  display: flex;
+}
+</style>

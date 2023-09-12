@@ -44,17 +44,17 @@
     >
       <div style="display: flex; justify-content: center">
         <div class="text-gp">
-          <el-text>Start your career! </el-text>
+          <el-text style="font-weight: 600">Start your career! </el-text>
           <el-text
             >There are varieties of part time jobs available. Start
             now!</el-text
           >
-          <div style="display: flex; align-items: center">
-            <el-text style="display: inline-flex">Join Now</el-text
-            ><el-icon style="display: inline-flex; color: #ffffff"
-              ><Position
-            /></el-icon>
-          </div>
+          <el-link :underline="false" style="color: #ffffff">
+            Join Now
+            <el-icon>
+              <Position />
+            </el-icon>
+          </el-link>
         </div>
         <img src="@/assets/images/service-girl.svg" alt="" />
       </div>
@@ -68,7 +68,7 @@ const users = ref([
   { name: "John Doe", service: "Laundry" },
   { name: "Jane Smith", service: "Cleaning" },
   { name: "Bob Johnson", service: "Laundry" },
-],)
+]);
 </script>
 
 <style lang="scss">
@@ -76,14 +76,12 @@ const users = ref([
   margin-top: 20px;
 }
 .service-text {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 10px;
   display: block;
   font-weight: 600;
-  line-height: 27px;
-  letter-spacing: 0em;
   text-align: left;
-  color: #212121;
+  color: black;
 }
 .service-btns {
   display: flex;
@@ -112,10 +110,12 @@ const users = ref([
 .join-card {
   background-color: linear-gradient(98.72deg, #153660 32.37%, #45a1ff 87.71%);
 }
-.text-gp .el-text,
-.text-gp .el-icon {
+.text-gp .el-text {
   color: #ffffff;
   display: block;
-  margin: 10px;
+  margin: 10px 0;
+}
+.text-gp .el-icon {
+  margin-left: 10px;
 }
 </style>

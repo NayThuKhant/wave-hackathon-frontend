@@ -1,10 +1,6 @@
 <template>
   <el-card class="card-container" shadow="hover">
     <div style="display: flex; align-items: center">
-      <!-- <el-avatar :icon="UserFilled" /> -->
-      <!-- <el-avatar>
-        <UserFilled size="14"/>
-      </el-avatar> -->
       <el-avatar class="card-user"><User /></el-avatar>
       <div style="margin-left: 10px">
         <span style="display: block">{{ UserName }}</span>
@@ -40,8 +36,8 @@ const props = defineProps({
 }
 .card-container .el-card__body {
   display: flex;
-  justify-content: space-between; /* Distribute content to each edge side */
-  align-items: center; /* Vertically center content */
+  justify-content: space-between; 
+  align-items: center;
   width: 100%;
   padding: 20px;
 }
