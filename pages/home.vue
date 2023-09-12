@@ -3,7 +3,7 @@
   <div style="margin: 20px 20px 70px 20px">
     <div class="addr-container">
       <el-text size="large">Welcome, {{ user.name }}</el-text>
-      <el-link size="small" type="primary" class="addr-link" :underline="false"
+      <el-link size="small" type="primary" class="addr-link" :underline="false" @click="toggleDrawer"
         >Add New Address</el-link
       >
       <SearchBar></SearchBar>
@@ -13,7 +13,7 @@
     <el-drawer
       v-model="drawer"
       direction="btt"
-      class="bottom-sheet"
+      custom-class="bottom-sheet"
       :with-header="false"
     >
       <el-divider
@@ -21,17 +21,16 @@
         content-position="center"
         :height="6"
       ></el-divider>
-      <el-radio-group v-model="radio" class="radio-card">
-        <el-radio label="1" size="large" class="radio-lable" border
-          ><el-text>No (24), 40th Street, Botahtaung, Yangon</el-text>
-          <el-icon><EditPen /></el-icon
-        ></el-radio>
-        <el-radio label="2" size="large" class="radio-lable" border
-          ><el-text style="word-wrap: break-word"
-            >No (24), 49 Street, Botahtaung Township, Yangon</el-text
-          ><el-icon><EditPen /></el-icon
-        ></el-radio>
-      </el-radio-group>
+
+      <el-container class="radio-card">
+        <el-text class="address-text">No (24), 40th Street, Botahtaung, Yangon, Somewhere on the earth, someone on the earth</el-text>
+        <el-icon><edit-pen/></el-icon>
+      </el-container>
+      <el-container class="radio-card">
+        <el-text class="address-text">No (24), 40th Street, Botahtaung, Yangon</el-text>
+        <el-icon><edit-pen/></el-icon>
+      </el-container>
+
       <el-button
         type="primary"
         style="width: 100%; padding: 8px 12px; border-radius: 8px"
@@ -43,10 +42,10 @@
 </template>
 
 <script setup>
-import { authStore } from "~/stores/authStore";
-const store = authStore();
+import {EditPen} from "@element-plus/icons-vue";
+import useHome from "~/composables/useHome";
 
-const user = store.getUserData;
+const {user, drawer, toggleDrawer } = useHome()
 </script>
 
 <style scoped lang="scss">
@@ -59,6 +58,7 @@ const user = store.getUserData;
   list-style-type: none;
 }
 .bottom-sheet {
+  background-color: rebeccapurple;
   max-width: 440px;
   margin: auto;
   display: flex;
@@ -67,26 +67,31 @@ const user = store.getUserData;
   padding: 10px 20px;
   height: auto !important;
 }
-.radio-lable {
+.radio-label {
   margin-bottom: 15px;
 }
-.radio-lable .el-text {
+.radio-label .el-text {
   line-height: 20px;
   word-break: break-word;
 }
 .thick-line {
   border-top: 4px solid #787878;
-  border-top-width: 4px;
-  border-top-style: solid;
   width: 100px;
-  margin: auto;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
+
 }
 .radio-card {
-  display: flex-start;
-  flex-direction: column;
+  display: flex;
   margin-bottom: 10px;
+  padding: 12px;
+  border: 0.5px solid #CCCCCC;
+  border-radius: 8px;
 }
+
+.address-text{
+  flex: 1;
+}
+
 .el-radio {
   margin: 0 0 10px 0;
   width: 100%;

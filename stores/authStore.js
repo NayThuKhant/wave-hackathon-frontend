@@ -4,8 +4,8 @@ import nuxtStorage from 'nuxt-storage'
 export const authStore = defineStore({
     id: 'authStore',
     state: () => ({
-        token: nuxtStorage.localStorage.getData('userToken') ?? null,
-        userData: nuxtStorage.localStorage.getData('userData') ?? null
+        token: localStorage.getItem('userToken'),
+        userData: localStorage.getItem('userData')
     }),
 
     getters: {
@@ -20,11 +20,11 @@ export const authStore = defineStore({
     actions: {
         async setToken(token) {
             this.token = token
-            nuxtStorage.localStorage.setData('userToken', token)
+            localStorage.setItem('userToken', token)
         },
         async setUserData(userData) {
             this.userData = JSON.stringify(userData)
-            nuxtStorage.localStorage.setData('userData', JSON.stringify(userData))
+            localStorage.setItem('userData', JSON.stringify(userData))
         }
     }
 })
