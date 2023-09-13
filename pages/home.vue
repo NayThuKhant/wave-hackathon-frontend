@@ -14,7 +14,7 @@
     <el-drawer
         v-model="drawer"
         direction="btt"
-        custom-class="bottom-sheet"
+        class="bottom-sheet"
         :with-header="false"
     >
       <el-divider
@@ -55,6 +55,11 @@
 <script setup>
 import {EditPen} from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
+const {$api} = useNuxtApp()
+
+$api.get("https://google.com").then((res) => {
+  console.log(res)
+})
 
 const {user, drawer, toggleDrawer} = useHome()
 </script>
