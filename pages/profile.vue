@@ -2,7 +2,7 @@
   <TopHeader></TopHeader>
   <div style="margin: 50px 20px 70px 20px">
     <div class="profile-card" style="display: flex; align-items: center">
-      <el-avatar class="card-user"><User /></el-avatar>
+      <el-avatar class="card-user"><ElIconUser /></el-avatar>
       <div style="margin-left: 20px">
         <span
           style="
@@ -13,7 +13,7 @@
           "
           >{{ userProfile.name }}</span
         >
-        <el-text style="font-size: 12px">{{ userProfile.phone }}</el-text>
+        <el-text style="font-size: 12px">{{ userProfile.mobile_number }}</el-text>
       </div>
     </div>
 
@@ -53,7 +53,7 @@
             ><el-image src="/images/terms.svg" /></el-icon
           >Terms & Conditions</el-text
         >
-        <el-icon><ArrowRightBold /></el-icon>
+        <el-icon><arrow-right-bold /></el-icon>
       </div>
       <div class="setting">
         <el-text class="des-title"
@@ -61,7 +61,7 @@
             ><el-image src="/images/faqs.svg" /></el-icon
           >FAQs</el-text
         >
-        <el-icon><ArrowRightBold /></el-icon>
+        <el-icon><arrow-right-bold /></el-icon>
       </div>
       <div class="setting">
         <el-text class="des-title"
@@ -82,22 +82,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import {
-  Suitcase,
-  User,
-  ArrowRightBold,
-  Document,
-  QuestionFilled,
-} from "@element-plus/icons-vue";
+import useProfile from "~/composables/useProfile";
+import {ArrowRightBold} from "@element-plus/icons-vue";
 
-const userProfile = ref({
-  name: "John Doe",
-  phone: "0912345678",
-  profilePicture: "https://example.com/profile.jpg",
-  about: "I'm a software developer.",
-  address: "123 Main St, City, Country",
-});
+const { userProfile } = useProfile()
 </script>
 <style lang="scss">
 .profile-card {
