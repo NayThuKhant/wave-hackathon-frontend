@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import nuxtStorage from 'nuxt-storage'
 
 export const authStore = defineStore({
     id: 'authStore',
