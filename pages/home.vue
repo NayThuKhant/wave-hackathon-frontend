@@ -55,9 +55,9 @@
 <script setup>
 import {EditPen} from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
-const {$api} = useNuxtApp()
+const {$axios} = useNuxtApp()
 
-$api.get("https://google.com").then((res) => {
+$axios.get("https://google.com").then((res) => {
   console.log(res)
 })
 
