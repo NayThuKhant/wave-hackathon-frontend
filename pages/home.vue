@@ -55,11 +55,6 @@
 <script setup>
 import {EditPen} from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
-const {$axios} = useNuxtApp()
-
-$axios.get("https://google.com").then((res) => {
-  console.log(res)
-})
 
 const {user, drawer, toggleDrawer} = useHome()
 </script>
