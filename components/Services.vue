@@ -82,6 +82,7 @@ const users = ref([
   font-weight: 600;
   text-align: left;
   color: black;
+  word-wrap: break-word;
 }
 .service-btns {
   display: flex;

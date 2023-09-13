@@ -8,13 +8,13 @@
   </div>
 </template>
 <script setup>
-const props = defineProps(['to'])
+const props = defineProps(["to"]);
 const goBack = () => {
-  navigateTo(props.to)
-}
+  navigateTo(props.to);
+};
 </script>
 
-<style scoped>
+<style>
 .header-style {
   padding: 8px;
   z-index: 1000;
@@ -25,7 +25,19 @@ const goBack = () => {
   text-align: center;
   max-width: 480px; /* Set the maximum width */
   margin: 0 auto; /* Center the navbar horizontally */
-  background: #FFF;
-  box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.10);
+  background: #fff;
+  /* box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.10); */
+}
+.el-page-header__title {
+  display: none;
+}
+.el-divider--vertical {
+  display: none;
+}
+.el-page-header__content {
+  font-size: 16px;
+}
+.header-style {
+  padding: 12px;
 }
 </style>
