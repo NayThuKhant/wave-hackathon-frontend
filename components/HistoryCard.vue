@@ -57,14 +57,13 @@ const props = defineProps({
 <style lang="scss">
 .history-card {
   width: 100%;
-  margin: 5px;
-  margin: auto;
+  margin: 0 auto;
   // padding: 15px 10px;
 }
 .history-row {
   border-bottom: 1px solid #cccccc;
 
-  padding: 15px;
+  padding: 15px 0;
 }
 .user-name {
   color: black;
