@@ -5,7 +5,13 @@ export default defineNuxtPlugin((nuxtApp) => {
   let api = axios.create({
     baseURL: defaultUrl,
     headers: {
-      common: {},
+      common: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Authorization": `Bearer ${localStorage.getItem('userToken')}`
+      }
     },
   });
 return {

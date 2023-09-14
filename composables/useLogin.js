@@ -36,9 +36,17 @@ export default function () {
             })
     }
 
+    const fetchMe = async () => {
+        $axios.get(`${config.public.backendApi}/me`)
+            .then( (res) => {
+                store.setUserData(res.data.data)
+            })
+    }
+
 
     return {
         login,
-        loading
+        loading,
+        fetchMe
     }
 }

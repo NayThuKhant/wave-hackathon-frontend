@@ -2,15 +2,15 @@ import { defineStore } from 'pinia'
 
 export const authStore = defineStore({
     id: 'authStore',
-    state: () => ({
-        token: localStorage.getItem('userToken'),
-        userData: localStorage.getItem('userData')
-    }),
+    state: () => {
+        return {
+            token: localStorage.getItem('userToken'),
+            userData: localStorage.getItem('userData')
+        }
+    },
 
     getters: {
-        getToken(state) {
-            return state.token
-        },
+        getToken: (state) => state.token,
         getUserData(state) {
             return state.userData ? JSON.parse(state.userData) : null
         }

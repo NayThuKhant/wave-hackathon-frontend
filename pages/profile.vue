@@ -1,6 +1,6 @@
 <template>
-  <TopHeader></TopHeader>
-  <div style="margin: 50px 20px 70px 20px">
+  <div class="profile-container">
+    <p class="profile-header">Profile</p>
     <div class="profile-card" style="display: flex; align-items: center">
       <el-avatar class="card-user"><ElIconUser /></el-avatar>
       <div style="margin-left: 20px">
@@ -36,15 +36,17 @@
             ><el-image src="/images/briefcase.svg" /></el-icon
           >Employee Profile</el-text
         >
-        <el-link
-          :underline="false"
-          style="
+        <el-tag v-if="userProfile.employee" :type="'success'" class="mx-1" effect="dark" round>
+          ACTIVATED
+        </el-tag>
+        <el-link v-else :underline="false" style="
             font-size: 14px;
             font-weight: 500;
             text-align: right;
             color: #3188e1;
-          "
-          >Join</el-link
+          " @click="startWorking">
+          JOIN
+        </el-link
         >
       </div>
       <div class="setting">
@@ -64,7 +66,7 @@
         <el-icon><arrow-right-bold /></el-icon>
       </div>
       <div class="setting">
-        <el-text class="des-title"
+        <el-text class="des-title" style="flex: 1"
           ><el-icon class="setting-icon"
             ><el-image src="/images/globe.svg"
           /></el-icon>
@@ -75,6 +77,7 @@
           style="font-size: 14px; font-weight: 500; text-align: right"
           >English</el-link
         >
+        <el-icon style="margin-left: 5px"><arrow-right-bold /></el-icon>
       </div>
     </div>
   </div>
@@ -85,9 +88,16 @@
 import useProfile from "~/composables/useProfile";
 import {ArrowRightBold} from "@element-plus/icons-vue";
 
-const { userProfile } = useProfile()
+const { userProfile, startWorking } = useProfile()
 </script>
 <style lang="scss">
+.profile-container {
+  margin: 0 20px 70px 20px;
+
+  .profile-header {
+    font-size: 24px;
+  }
+}
 .profile-card {
   border-radius: 8px;
   margin: 20px auto;

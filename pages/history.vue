@@ -41,7 +41,11 @@ const { users, formatDate, activeName, handleClick } = useHistory()
 
   p {
     margin: 0;
-    font-size: 20px;
+    font-size: 23px;
+  }
+
+  .demo-tabs {
+    margin-top: 10px;
   }
 }
 </style>
