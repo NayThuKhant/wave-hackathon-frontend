@@ -4,24 +4,26 @@
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
       <el-tab-pane label="My Offers" name="first">
         <HistoryCard
-            v-for="user in users"
-            :key="user.id"
-            :workerName="user.workerName"
-            :service="user.service"
-            :price="user.price"
-            :date="formatDate(user.date)"
-            :image="user.image"
+            v-if="orders"
+            v-for="order in orders"
+            :key="order.id"
+            :workerName="order.employee.name"
+            :service="order.category.name"
+            :price="'10000'"
+            :date="formatDate(order.created_at)"
+            :image="determineImage(order.category.id)"
         />
       </el-tab-pane>
       <el-tab-pane label="My Services" name="second">
         <HistoryCard
-            v-for="user in users"
-            :key="user.id"
-            :workerName="user.workerName"
-            :service="user.service"
-            :price="user.price"
-            :date="formatDate(user.date)"
-            :image="user.image"
+            v-if="offers"
+            v-for="offer in offers"
+            :key="offer.id"
+            :workerName="offer.employer.name"
+            :service="offer.category.name"
+            :price="'13000'"
+            :date="formatDate(offer.created_at)"
+            :image="determineImage(offer.category.id)"
         />
       </el-tab-pane>
     </el-tabs>
@@ -32,7 +34,11 @@
 <script setup>
 import useHistory from "~/composables/useHistory";
 
-const { users, formatDate, activeName, handleClick } = useHistory()
+const { users, formatDate, activeName, handleClick, orders, fetOrderList, offers, determineImage } = useHistory()
+
+onMounted(async () => {
+  await fetOrderList()
+})
 </script>
 
 <style lang="scss" scoped>
