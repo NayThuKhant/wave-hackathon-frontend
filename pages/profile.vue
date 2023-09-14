@@ -36,7 +36,7 @@
             ><el-image src="/images/briefcase.svg" /></el-icon
           >Employee Profile</el-text
         >
-        <el-tag v-if="userProfile.employee" :type="'success'" class="mx-1" effect="dark" round>
+        <el-tag v-if="isActive" :type="'success'" class="mx-1" effect="dark" round>
           ACTIVATED
         </el-tag>
         <el-link v-else :underline="false" style="
@@ -88,7 +88,7 @@
 import useProfile from "~/composables/useProfile";
 import {ArrowRightBold} from "@element-plus/icons-vue";
 
-const { userProfile, startWorking } = useProfile()
+const { userProfile, startWorking, isActive } = useProfile()
 </script>
 <style lang="scss">
 .profile-container {
