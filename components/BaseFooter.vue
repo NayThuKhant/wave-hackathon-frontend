@@ -3,10 +3,8 @@
     <!-- Navigation content goes here -->
     <div class="navbar">
       <div class="navbar-item" @click="brSharLal('home')">
-<!--        <el-icon :color="activeTab === 'home' ? 'blue': 'gray'">-->
-<!--          <HomeFilled />-->
-<!--        </el-icon>-->
-        <img alt="home-icon" :src="isActive('home')" />
+        <el-image :src="isActive('home')" alt="home-icon"></el-image>
+<!--        <img alt="home-icon" :src="isActive('home')" />-->
         <p>Home</p>
       </div>
       <div class="navbar-item" @click="brSharLal('history')">
@@ -37,7 +35,8 @@ const brSharLal = async (route) => {
 }
 
 const isActive = (name) => {
-  return activeTab === name ? "_nuxt/assets/images/" + name + "-blue.svg" : "_nuxt/assets/images/" + name + "-gray.svg"
+  console.log("/images/" + name + "blue.svg")
+  return activeTab === name ? "/images/" + name + "blue.svg" : "/images/" + name + "gray.svg"
 }
 </script>
 

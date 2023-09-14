@@ -55,10 +55,10 @@ export default function () {
 
     const determineImage = (id) => {
         if (id === 1) {
-            return "_nuxt/assets/images/cleaning.svg"
+            return "/images/cleaning.svg"
         }
         if (id === 2) {
-            return "_nuxt/assets/images/laundry.svg"
+            return "/images/laundry.svg"
         }
     }
 

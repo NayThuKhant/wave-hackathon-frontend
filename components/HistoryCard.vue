@@ -63,7 +63,7 @@ const props = defineProps({
 .history-row {
   border-bottom: 1px solid #cccccc;
 
-  padding: 15px 0;
+  padding: 12px 0;
 }
 .user-name {
   color: black;
