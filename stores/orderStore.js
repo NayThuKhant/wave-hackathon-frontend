@@ -5,8 +5,8 @@ export const orderStore = defineStore({
 
     state: () => {
         return {
-            orders: null,
-            offers: null
+            orders: [],
+            offers: []
         }
     },
 

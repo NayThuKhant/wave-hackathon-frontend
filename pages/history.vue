@@ -3,7 +3,7 @@
     <p>Orders</p>
     <el-tabs v-model="activeName" stretch class="demo-tabs" @tab-click="handleClick">
       <el-tab-pane label="My Offers" name="first">
-        <template v-if="orders">
+        <template v-if="orders.length">
           <HistoryCard
               v-for="order in orders"
               :key="order.id"
@@ -18,7 +18,7 @@
       </el-tab-pane>
       <el-tab-pane label="My Services" name="second">
         <HistoryCard
-            v-if="offers"
+            v-if="offers.length"
             v-for="offer in offers"
             :key="offer.id"
             :workerName="offer.employer.name"
