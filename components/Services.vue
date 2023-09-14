@@ -1,8 +1,11 @@
 <template>
   <div class="services">
-    <el-text class="service-text">Services</el-text>
     <div class="service-btns">
-      <el-card class="service-card" shadow="hover">
+      <el-card
+        class="service-card"
+        shadow="hover"
+        @click="goToService('laundry')"
+      >
         <div style="display: flex; align-items: center">
           <img src="@/assets/images/laundry.svg" />
           <span style="margin-left: 10px">Laundry</span>
@@ -15,10 +18,11 @@
         class="service-card"
         shadow="hover"
         style="background-color: #fce9ff"
+        @click="goToService('household')"
       >
         <div style="display: flex; align-items: center">
           <img src="@/assets/images/cleaning.svg" />
-          <span style="margin-left: 10px">Cleaning</span>
+          <span style="margin-left: 10px">Household</span>
         </div>
         <el-icon class="service-icon">
           <ArrowRight />
@@ -69,6 +73,9 @@ const users = ref([
   { name: "Jane Smith", service: "Cleaning" },
   { name: "Bob Johnson", service: "Laundry" },
 ]);
+const goToService = async (route) => {
+  navigateTo(route);
+};
 </script>
 
 <style lang="scss">
@@ -82,7 +89,6 @@ const users = ref([
   font-weight: 600;
   text-align: left;
   color: black;
-  word-wrap: break-word;
 }
 .service-btns {
   display: flex;
@@ -115,6 +121,7 @@ const users = ref([
   color: #ffffff;
   display: block;
   margin: 10px 0;
+  line-height: 18px;
 }
 .text-gp .el-icon {
   margin-left: 10px;
