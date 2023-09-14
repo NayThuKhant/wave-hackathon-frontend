@@ -35,7 +35,6 @@ const brSharLal = async (route) => {
 }
 
 const isActive = (name) => {
-  console.log("/images/" + name + "blue.svg")
   return activeTab === name ? "/images/" + name + "blue.svg" : "/images/" + name + "gray.svg"
 }
 </script>

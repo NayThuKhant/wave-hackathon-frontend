@@ -14,19 +14,26 @@
               :image="determineImage(order.category.id)"
           />
         </template>
-        <el-empty v-else description="description" />
+        <el-empty v-else image="/images/empty.svg" description="There is nothing to show yet !" />
       </el-tab-pane>
       <el-tab-pane label="My Services" name="second">
-        <HistoryCard
-            v-if="offers.length"
-            v-for="offer in offers"
-            :key="offer.id"
-            :workerName="offer.employer.name"
-            :service="offer.category.name"
-            :price="'13000'"
-            :date="formatDate(offer.created_at)"
-            :image="determineImage(offer.category.id)"
-        />
+        <template v-if="offers.length">
+          <HistoryCard
+              v-if="offers.length"
+              v-for="offer in offers"
+              :key="offer.id"
+              :workerName="offer.employer.name"
+              :service="offer.category.name"
+              :price="'13000'"
+              :date="formatDate(offer.created_at)"
+              :image="determineImage(offer.category.id)"
+          />
+        </template>
+        <el-empty v-else image="/images/empty.svg" description="There is nothing to show yet !" >
+          <el-button v-if="!user.employee" type="primary">
+            Join Now !
+          </el-button>
+        </el-empty>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -36,7 +43,7 @@
 <script setup>
 import useHistory from "~/composables/useHistory";
 
-const { users, formatDate, activeName, handleClick, orders, fetOrderList, offers, determineImage } = useHistory()
+const { user, formatDate, activeName, handleClick, orders, fetOrderList, offers, determineImage } = useHistory()
 
 onMounted(async () => {
   await fetOrderList()

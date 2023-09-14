@@ -1,36 +1,14 @@
 import {orderStore} from "~/stores/orderStore";
+import {authStore} from "~/stores/authStore";
+
 export default function () {
     const store = orderStore()
+    const userStore = authStore()
     const config = useRuntimeConfig()
     const { $axios } = useNuxtApp()
 
     const activeName = ref('first')
-    const users = ref([
-        {
-            id: 1,
-            workerName: "John Doe",
-            service: "Laundry Service",
-            price: "10,000",
-            date: "9 Oct 2023",
-            image: "/images/laundry.svg",
-        },
-        {
-            id: 2,
-            workerName: "Alice Smith",
-            service: "Cleaning Service",
-            price: "7,500",
-            date: "9 Sep 2023",
-            image: "/images/cleaning.svg",
-        },
-        {
-            id: 3,
-            workerName: "Bob Johnson",
-            service: "Gardening Service",
-            price: "12,000",
-            date: "9 Nov 2023",
-            image: "/images/laundry.svg",
-        },
-    ])
+    const user = userStore.getUserData
     const orders = store.getOrders
     const offers = store.getOffers
     const handleClick = (tab, event) => {
@@ -63,7 +41,7 @@ export default function () {
     }
 
     return {
-        users,
+        user,
         formatDate,
         handleClick,
         activeName,

@@ -95,7 +95,7 @@
     </el-radio-group>
     <el-button
       type="primary"
-      style="width: 100%; padding: 8px 12px; border-radius: 8px; margin: 0"
+      style="width: 100%; padding: 12px; border-radius: 8px; margin: 0"
       >Add New Address
     </el-button>
   </el-drawer>
