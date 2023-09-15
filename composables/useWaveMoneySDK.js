@@ -14,7 +14,7 @@ export default function () {
         const data = response?.response.data
         // REMOVE
         alert(JSON.stringify(data));
-        if (data) return {name, dob, gender, misisdn, nrc, kyc_status} = data
+        if (data) return {name, dob, gender, msisdn, nrc, kyc_status} = data
 
         // TODO default value for testing without wave money sdk
         return {
