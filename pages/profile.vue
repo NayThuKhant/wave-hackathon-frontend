@@ -1,6 +1,9 @@
 <template>
   <div class="profile-container">
-    <p class="profile-header">Profile</p>
+    <div style="display: flex;">
+      <p class="profile-header">Profile</p>
+      <WaveCloseButton />
+    </div>
     <div class="profile-card" style="display: flex; align-items: center">
       <el-avatar class="card-user"><ElIconUser /></el-avatar>
       <div style="margin-left: 20px">
@@ -96,6 +99,7 @@ const { userProfile, startWorking, isActive } = useProfile()
 
   .profile-header {
     font-size: 24px;
+    flex: 1;
   }
 }
 .profile-card {

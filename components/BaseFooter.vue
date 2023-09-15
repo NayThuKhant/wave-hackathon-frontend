@@ -12,7 +12,7 @@
 <!--          <List />-->
 <!--        </el-icon>-->
         <img alt="home-icon" :src="isActive('history')" />
-        <p>History</p>
+        <p>Orders</p>
       </div>
       <div class="navbar-item" @click="brSharLal('profile')">
 <!--        <el-icon :color="activeTab === 'profile' ? 'blue': 'gray'">-->

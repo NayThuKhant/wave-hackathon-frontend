@@ -7,8 +7,8 @@
           <el-image class="header-image" src="/images/ourlogo.png"></el-image>
         </div>
         <div>
-          <el-image src="/images/topsearchicon.svg"></el-image>
-          <el-image @click="shutDown" style="margin-left: 10px" src="/images/x-circle.svg"></el-image>
+          <el-image @click="goToProviders" src="/images/topsearchicon.svg"></el-image>
+          <WaveCloseButton />
         </div>
       </div>
 <!--      <SearchBar></SearchBar>-->
@@ -75,10 +75,6 @@ import useWaveMoneySDK from "~/composables/useWaveMoneySDK"
 const balance = ref();
 const { providers, fetchProviders } = useProvider();
 
-const shutDown = async () => {
-  await useWaveMoneySDK().shutDownAppFromWave()
-}
-
 onMounted(async () => {
   const value = await useWaveMoneySDK().getWaveUserWalletBalance()
   balance.value = new Intl.NumberFormat('en-US', {
@@ -90,7 +86,7 @@ onMounted(async () => {
 });
 
 
-const { user, drawer } = useHome();
+const { user, drawer, goToProviders } = useHome();
 
 </script>
 

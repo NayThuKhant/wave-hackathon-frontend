@@ -1,5 +1,6 @@
 <template>
   <div class="services">
+    <el-text class="service-text">Categories</el-text>
     <div class="service-btns">
       <el-card
           class="service-card"

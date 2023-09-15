@@ -1,6 +1,9 @@
 <template>
   <div class="history-container">
-    <p>Orders</p>
+    <div style="display: flex;">
+      <p style="flex: 1">Orders</p>
+      <WaveCloseButton />
+    </div>
     <el-tabs v-model="activeName" stretch class="demo-tabs" @tab-click="handleClick">
       <el-tab-pane label="My Offers" name="first">
         <template v-if="orders.length">
