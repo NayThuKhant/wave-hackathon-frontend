@@ -14,7 +14,7 @@
     <div style="flex: 1; text-align: right">
       <el-text class="card-text">
         <el-icon class="card-icon"><StarFilled /></el-icon>
-        4.5
+        {{Employee.rating}}
       </el-text>
     </div>
   </el-card>
