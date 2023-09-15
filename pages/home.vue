@@ -2,7 +2,6 @@
   <!-- <TopHeader></TopHeader> -->
   <div style="margin: 20px 20px 70px 20px">
     <div class="addr-container">
-<<<<<<< HEAD
       <div class="header">
         <el-image class="header-image" src="/images/WaveMoneyLogo.svg"></el-image>
         <div>
@@ -10,18 +9,6 @@
           <el-text size="large" class="addr-link balance" :underline="false" type="primary">{{ balance }}</el-text>
         </div>
       </div>
-
-=======
-      <el-text size="large">Welcome, {{ user.name }}</el-text>
-      <el-link
-        size="small"
-        type="primary"
-        class="addr-link"
-        :underline="false"
-        @click="toggleDrawer"
-        >Add New Address
-      </el-link>
->>>>>>> pages/kct
       <SearchBar></SearchBar>
       <Carousel></Carousel>
       <Services></Services>
