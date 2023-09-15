@@ -11,7 +11,7 @@
       </div>
       <SearchBar></SearchBar>
       <Carousel></Carousel>
-      <Services></Services>
+      <Services :providers="providers"></Services>
     </div>
     <el-drawer
       v-model="drawer"
@@ -58,9 +58,11 @@
 <script setup>
 import { EditPen } from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
+import useProvider from "~/composables/useProvider";
 import useWaveMoneySDK from "~/composables/useWaveMoneySDK"
 
 const balance = ref();
+const { providers, fetchProviders } = useProvider();
 
 onMounted(async () => {
   const value = await useWaveMoneySDK().getWaveUserWalletBalance()
@@ -68,14 +70,12 @@ onMounted(async () => {
     style: 'currency',
     currency: 'MMK'
   }).format(value);
+
+  await fetchProviders();
 });
 
 
-const { user, drawer, toggleDrawer, fetchProvidersList } = useHome();
-
-onMounted(async () => {
-  await fetchProvidersList();
-});
+const { user, drawer } = useHome();
 
 </script>
 

@@ -10,7 +10,7 @@
 <script setup>
 import useLogin from "~/composables/useLogin"
 
-const {login, loading} = useLogin()
+const {login} = useLogin()
 
 onMounted(() => {
   login()
