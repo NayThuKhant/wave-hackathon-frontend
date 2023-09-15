@@ -19,7 +19,6 @@
       <el-tab-pane label="My Services" name="second">
         <template v-if="offers.length">
           <HistoryCard
-              v-if="offers.length"
               v-for="offer in offers"
               :key="offer.id"
               :workerName="offer.employer.name"

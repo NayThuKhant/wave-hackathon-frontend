@@ -9,8 +9,15 @@ export default function () {
 
     const activeName = ref('first')
     const user = userStore.getUserData
-    const orders = store.getOrders
-    const offers = store.getOffers
+    const orders = ref([])
+    const offers = ref([])
+
+    const axiosHeaders = {
+        headers:{
+          Authorization: `Bearer ${localStorage.getItem('userToken')}`
+        }
+    }
+
     const handleClick = (tab, event) => {
         console.log(tab, event)
     }
@@ -21,11 +28,12 @@ export default function () {
     };
 
     const setOrderData = async (response) => {
-        await store.setOrders(response.data.data)
+        orders.value = response.data.data.orders
+        offers.value = response.data.data.offers
     }
 
-    const fetOrderList = async () => {
-        await $axios.get(`${config.public.backendApi}/orders`)
+    async function fetOrderList() {
+        await $axios.get(`${config.public.backendApi}/orders`, axiosHeaders)
             .then( (response) => {
                 setOrderData(response)
             })

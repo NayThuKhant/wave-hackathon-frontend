@@ -10,7 +10,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           "Accept": "application/json",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          "Authorization": `Bearer ${localStorage.getItem('userToken')}`
+          // "Authorization": `Bearer ${localStorage.getItem('userToken')}`
       }
     },
   });

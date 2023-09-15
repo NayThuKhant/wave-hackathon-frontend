@@ -4,7 +4,6 @@ import {useRoute} from "#app";
 export default function () {
     const {$axios} = useNuxtApp()
 
-
     const getMobileNumber = ( ) => {
         // TODO get misisdn from wave sdk
         return useRoute().query.mobile_number ?? "09784489866"
