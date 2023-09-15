@@ -47,10 +47,29 @@ export default function () {
         }
     }
 
+    const getWaveUserLocation = async () => {
+        await ensureWaveUserIsLoggedIn()
+        const response = await window.WaveJsSDK.locationModule?.getCurrentPosition()
+        const data = response?.response.data
+
+        if (data) {
+            // TODO - Interpret the lat lang value to address using google map api or something else, and return it properly
+            // TODO - can't do it right now since it's paid version
+        }
+
+        return {
+            "floor": "Dulwich, Golf Estate",
+            "street": "Pun Hlaing Estate Avenue",
+            "township": "Hlaing Thar Yar",
+            "city": "Yangon"
+        }
+    }
+
 
     return {
         ensureWaveUserIsLoggedIn,
         getWaveUserInformation,
-        getWaveUserDevice
+        getWaveUserDevice,
+        getWaveUserLocation
     }
 }
