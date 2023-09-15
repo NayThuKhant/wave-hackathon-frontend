@@ -28,7 +28,7 @@ export default function () {
     };
 
     const setOrderData = async (response) => {
-        orders.value = response.data.data.orders
+        orders.value = response.data.data.services
         offers.value = response.data.data.offers
     }
 

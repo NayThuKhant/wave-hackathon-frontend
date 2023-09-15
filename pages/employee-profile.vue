@@ -1,5 +1,5 @@
 <template>
-  <TopHeader :to="profile"></TopHeader>
+  <TopHeader :to="'profile'"></TopHeader>
   <div class="emp-profile-container">
     <div style="flex: 1">
       <el-text class="emp-header">Setup your employee profile</el-text>
@@ -9,16 +9,10 @@
       >
       <el-text class="emp-sub-header"> Choose your prefer service</el-text>
       <el-checkbox-group v-model="checkedServices" class="to-check-services">
-        <el-checkbox label="laundry" class="check-service"
+        <el-checkbox v-for="category in categories" :label="category.label" class="check-service" :key="category.key"
           ><div style="display: flex; align-items: center">
-            Laundry Services
-            <img src="@/assets/images/laundry.svg" style="margin-left: 16px" />
-          </div>
-        </el-checkbox>
-        <el-checkbox label="cleaning" class="check-service"
-          ><div style="display: flex; align-items: center">
-            Cleaning Services
-            <img src="@/assets/images/cleaning.svg" style="margin-left: 16px" />
+            {{ category.text  }}
+            <img src="@/assets/images/cleaning.svg" />
           </div>
         </el-checkbox>
       </el-checkbox-group>
@@ -26,13 +20,14 @@
   </div>
   <div class="profile-foo">
     <el-button
+    @click="updateCategories"
+    style="
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 8px;"
       type="primary"
-      style="
-        width: 100%;
-        padding: 8px 12px;
-        border-radius: 8px;
-        background-color: #153051;
-      "
+      :disabled="isDisabled"
+      color="#153051"
       >Register Now
     </el-button>
   </div>
@@ -43,8 +38,25 @@ import useProfile from "~/composables/useProfile";
 import { ref } from "vue";
 
 const checkedServices = ref([]);
+const categories = ref([
+  {
+    text: "Laundry Services",
+    label: 1,
+    key: 1
+  },
+  {
+    text: "Household Services",
+    label: 2,
+    key: 2
+  }
+])
 
-const { userProfile } = useProfile();
+const isDisabled = computed(() => checkedServices.value.length ? false : true)
+const { subscribeCategories } = useProfile();
+
+const updateCategories = () => {
+  subscribeCategories({category_ids: checkedServices.value})
+}
 </script>
 <style lang="scss">
 .emp-profile-container {
@@ -87,6 +99,7 @@ const { userProfile } = useProfile();
   align-items: center;
   flex-shrink: 0;
   margin-bottom: 16px;
+  margin-right: 0;
   display: flex;
   justify-content: space-between;
   width: 40%;
