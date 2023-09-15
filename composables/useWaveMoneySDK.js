@@ -13,14 +13,8 @@ export default function () {
         const response = await window.WaveJsSDK.userModule?.getUserInformation()
         const data = response?.response.data
         if (data) {
-            alert("extracting");
-            alert(data.name)
             const {name, dob, gender, msisdn, nrc, kyc_status} = data
-            alert(name)
-            alert(dob)
-            alert(gender)
-            alert(msisdn)
-            alert(kyc_status)
+            return {name, dob, gender, msisdn, nrc, kyc_status}
         }
 
         // TODO default value for testing without wave money sdk
