@@ -2,8 +2,14 @@
   <!-- <TopHeader></TopHeader> -->
   <div style="margin: 20px 20px 70px 20px">
     <div class="addr-container">
-      <el-text size="small">Welcome, {{ user.name }}</el-text>
-      <el-text size="large" class="addr-link balance" :underline="false" type="primary">{{ balance }} MMK</el-text>
+      <div class="header">
+        <el-image class="header-image" src="/images/WaveMoneyLogo.svg"></el-image>
+        <div>
+          <el-text size="small">Welcome, {{ user.name }}</el-text>
+          <el-text size="large" class="addr-link balance" :underline="false" type="primary">{{ balance }}</el-text>
+        </div>
+      </div>
+
       <SearchBar></SearchBar>
       <Carousel></Carousel>
       <Services></Services>
@@ -54,11 +60,15 @@ import {EditPen} from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
 import useWaveMoneySDK from "~/composables/useWaveMoneySDK"
 
-const {user, drawer } = useHome()
-const balance = ref(0);
+const {user, drawer} = useHome()
+const balance = ref();
 
-onMounted(async () =>{
-  balance.value = await useWaveMoneySDK().getWaveUserWalletBalance()
+onMounted(async () => {
+  const value = await useWaveMoneySDK().getWaveUserWalletBalance()
+  balance.value = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'MMK'
+  }).format(value);
 });
 
 
@@ -71,6 +81,14 @@ onMounted(async () =>{
 
 .balance {
   font-weight: 900;
+}
+
+.header {
+  display: flex;
+}
+
+.header-image  {
+  margin-right: 16px;
 }
 
 .addr-link {

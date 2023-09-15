@@ -76,7 +76,7 @@ export default function () {
         const data = response?.response.data
 
         // TODO default value for testing without wave money sdk
-        return data ?? 500000;
+        return data ? data.amount : 500000;
     }
 
 
