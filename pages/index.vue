@@ -10,15 +10,17 @@
 <script setup>
 import useLogin from "~/composables/useLogin"
 
-const { login, loading } = useLogin()
+const {login, loading} = useLogin()
 
-onBeforeMount(() => {
+onMounted(() => {
+  // REMOVE
+  alert("index onmounted")
   login()
 })
 </script>
 
 <style lang="scss" scoped>
-.loading-container{
+.loading-container {
   display: flex;
   padding: 0;
   max-width: 480px;
