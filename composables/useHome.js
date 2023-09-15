@@ -1,4 +1,4 @@
-import { authStore } from "~/stores/authStore";
+import {authStore} from "~/stores/authStore";
 
 export default function () {
     const store = authStore();

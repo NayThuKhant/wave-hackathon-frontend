@@ -1,5 +1,4 @@
 import {authStore} from "~/stores/authStore"
-import {useRoute} from "#app"
 import useWaveMoneySDK from "~/composables/useWaveMoneySDK"
 
 export default function () {

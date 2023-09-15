@@ -32,6 +32,8 @@ export default function () {
         const data = response?.response.data
 
         if (data) return data
+
+        // TODO default value for testing without wave money sdk
         return {
             base: 1,
             board: "Sample Board",
@@ -59,6 +61,7 @@ export default function () {
             // TODO - can't do it right now since it's paid version
         }
 
+        // TODO default value for testing without wave money sdk
         return {
             "floor": "Dulwich, Golf Estate",
             "street": "Pun Hlaing Estate Avenue",
@@ -67,11 +70,21 @@ export default function () {
         }
     }
 
+    const getWaveUserWalletBalance = async () => {
+        await ensureWaveUserIsLoggedIn()
+        const response = await window.WaveJsSDK.paymentModule?.walletBalance()
+        const data = response?.response.data
+
+        // TODO default value for testing without wave money sdk
+        return data ?? 500000;
+    }
+
 
     return {
         ensureWaveUserIsLoggedIn,
         getWaveUserInformation,
         getWaveUserDevice,
-        getWaveUserLocation
+        getWaveUserLocation,
+        getWaveUserWalletBalance
     }
 }

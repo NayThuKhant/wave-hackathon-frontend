@@ -2,11 +2,8 @@
   <!-- <TopHeader></TopHeader> -->
   <div style="margin: 20px 20px 70px 20px">
     <div class="addr-container">
-      <el-text size="large">Welcome, {{ user.name }}</el-text>
-      <el-link size="small" type="primary" class="addr-link" :underline="false" @click="toggleDrawer"
-      >Add New Address
-      </el-link
-      >
+      <el-text size="small">Welcome, {{ user.name }}</el-text>
+      <el-text size="large" class="addr-link balance" :underline="false" type="primary">{{ balance }} MMK</el-text>
       <SearchBar></SearchBar>
       <Carousel></Carousel>
       <Services></Services>
@@ -55,13 +52,25 @@
 <script setup>
 import {EditPen} from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
+import useWaveMoneySDK from "~/composables/useWaveMoneySDK"
 
-const {user, drawer, toggleDrawer} = useHome()
+const {user, drawer } = useHome()
+const balance = ref(0);
+
+onMounted(async () =>{
+  balance.value = await useWaveMoneySDK().getWaveUserWalletBalance()
+});
+
+
 </script>
 
 <style lang="scss">
 .home {
   margin: 50px 20px 50px 20px;
+}
+
+.balance {
+  font-weight: 900;
 }
 
 .addr-link {
