@@ -13,8 +13,6 @@ import useLogin from "~/composables/useLogin"
 const {login, loading} = useLogin()
 
 onMounted(() => {
-  // REMOVE
-  alert("index onmounted")
   login()
 })
 </script>
