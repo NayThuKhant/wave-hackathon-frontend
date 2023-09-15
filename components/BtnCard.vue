@@ -1,25 +1,22 @@
 <template>
   <el-card class="card-container" shadow="hover">
-    <div style="display: flex; align-items: center">
-      <el-avatar class="card-user"><User /></el-avatar>
-      <div style="margin-left: 10px">
-        <span style="display: block">{{ Employee.name }}</span>
-        <el-text
+    <el-avatar class="card-user"><User /></el-avatar>
+    <div style="margin-left: 10px">
+      <span style="display: block">{{ Employee.name }}</span>
+      <el-text
           style="font-size: 10px; padding-right: 5px"
           v-for="category in Employee.categories"
           :key="category.id"
-          >{{ category.name }}
-          <span v-if="category.id < Employee.categories.length - 1">|</span>
-        </el-text>
-      </div>
+      >{{ category.name }}
+        <span v-if="category.id < Employee.categories.length - 1">|</span>
+      </el-text>
     </div>
-    <!-- <el-icon class="card-icon">
-      <ArrowRight />
-    </el-icon> -->
-    <el-text class="card-text">
-      <el-icon class="card-icon"><StarFilled /></el-icon>
-      4.5
-    </el-text>
+    <div>
+      <el-text class="card-text">
+        <el-icon class="card-icon"><StarFilled /></el-icon>
+        4.5
+      </el-text>
+    </div>
   </el-card>
 </template>
 
@@ -44,7 +41,6 @@ const props = defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   padding: 20px;
 }
 .card-icon {
@@ -53,7 +49,6 @@ const props = defineProps({
   margin-right: 6px;
 }
 .card-text {
-  padding-right: 30px;
   display: flex;
   justify-content: center;
   align-items: center;

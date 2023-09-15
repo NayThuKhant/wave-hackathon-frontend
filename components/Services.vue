@@ -7,13 +7,14 @@
           @click="goToService('laundry')"
       >
         <div style="display: flex; align-items: center">
-          <img src="@/assets/images/laundry.svg"/>
+          <img alt="" src="@/assets/images/laundry.svg"/>
           <span style="margin-left: 10px">Laundry</span>
         </div>
         <el-icon class="service-icon">
           <ArrowRight/>
         </el-icon>
       </el-card>
+      <div style="width: 16px"></div>
       <el-card
           class="service-card"
           shadow="hover"
@@ -102,7 +103,7 @@ const goToService = async (route) => {
 }
 
 .service-card {
-  width: 43%;
+  flex: 1;
   padding: 25px 10px;
   border-radius: 6px;
   background: #e9f2ff;

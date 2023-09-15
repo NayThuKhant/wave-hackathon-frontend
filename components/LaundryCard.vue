@@ -17,8 +17,6 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits } from "vue";
-
 const emits = defineEmits(["updateTotal"]);
 
 const props = defineProps({
