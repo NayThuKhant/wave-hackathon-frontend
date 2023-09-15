@@ -1,4 +1,4 @@
-import { authStore } from "~/stores/authStore"
+import {authStore} from "~/stores/authStore"
 import {useRoute} from "#app"
 import useWaveMoneySDK from "~/composables/useWaveMoneySDK"
 
@@ -19,15 +19,17 @@ export default function () {
     }
     const login = async () => {
         const userInformation = await waveMoneySDK.getWaveUserInformation()
+        // REMOVE
+        alert(userInformation)
         $axios.post(`${config.public.backendApi}/auth/login`, userInformation)
-            .then( (res) => {
+            .then((res) => {
                 storeResponseData(res)
             })
     }
 
     const fetchMe = async () => {
         $axios.get(`${config.public.backendApi}/me`)
-            .then( (res) => {
+            .then((res) => {
                 store.setUserData(res.data.data)
             })
     }
