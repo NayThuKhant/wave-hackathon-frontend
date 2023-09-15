@@ -18,8 +18,6 @@ export default function () {
         navigateTo('home')
     }
     const login = async () => {
-        const response = await waveMoneySDK.getWaveUserLocation()
-        console.log(response)
         const userInformation = await waveMoneySDK.getWaveUserInformation()
         $axios.post(`${config.public.backendApi}/auth/login`, userInformation)
             .then( (res) => {
