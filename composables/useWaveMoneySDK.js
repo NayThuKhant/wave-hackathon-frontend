@@ -1,8 +1,8 @@
 export default function () {
     const ensureWaveUserIsLoggedIn = async () => {
-        // REMOVE
-        alert(window.WaveJsSDK.userModule.getUserLoginStatus());
         const response = await window.WaveJsSDK.userModule?.getUserLoginStatus()
+        // REMOVE
+        alert(response.response);
         const loginStatus = response?.response.data.is_logged_in
 
         if (!loginStatus) alert("Please login to your wave money account to use this app. We will be using sample account since we cannot fetch the user information from your account")
