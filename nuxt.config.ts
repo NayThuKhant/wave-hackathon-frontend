@@ -1,5 +1,17 @@
 export default defineNuxtConfig({
     ssr: false,
+    app: {
+        head: {
+            script: [
+                {
+                    src: "/js/wavemoney.min.js"
+                },
+                {
+                    src: "/js/wavemoney-initializer.js"
+                }
+            ]
+        }
+    },
     //devtools: { enabled: true },
     runtimeConfig: {
         // Private config that is only available on the server
@@ -8,7 +20,7 @@ export default defineNuxtConfig({
         public: {
             backendApi: '/api'
         }
-      },
+    },
     modules: [
         '@element-plus/nuxt',
         '@pinia/nuxt',
