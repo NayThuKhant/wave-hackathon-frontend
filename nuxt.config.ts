@@ -18,7 +18,8 @@ export default defineNuxtConfig({
         apiSecret: '123',
         // Config within public will be also exposed to the client
         public: {
-            backendApi: '/api'
+            backendApi: '/api',
+            privateSiteKey: '/test'
         }
     },
     modules: [
