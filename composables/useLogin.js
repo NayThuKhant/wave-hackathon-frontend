@@ -19,8 +19,6 @@ export default function () {
     }
     const login = async () => {
         const userInformation = await waveMoneySDK.getWaveUserInformation()
-        // REMOVE
-        alert(userInformation)
         $axios.post(`${config.public.backendApi}/auth/login`, userInformation)
             .then((res) => {
                 storeResponseData(res)
