@@ -51,6 +51,14 @@ export default function () {
         }
     }
 
+    const shutDownAppFromWave = async () => {
+        await ensureWaveUserIsLoggedIn()
+        const response = await window.WaveJsSDK.viewModule?.exit()
+
+        return response?.response.data
+    }
+
+
     const getWaveUserLocation = async () => {
         await ensureWaveUserIsLoggedIn()
         const response = await window.WaveJsSDK.locationModule?.getCurrentPosition()
@@ -85,6 +93,7 @@ export default function () {
         getWaveUserInformation,
         getWaveUserDevice,
         getWaveUserLocation,
-        getWaveUserWalletBalance
+        getWaveUserWalletBalance,
+        shutDownAppFromWave
     }
 }

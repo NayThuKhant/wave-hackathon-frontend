@@ -8,10 +8,19 @@
         </div>
         <div>
           <el-image src="/images/topsearchicon.svg"></el-image>
-          <el-image style="margin-left: 10px" src="/images/x-circle.svg"></el-image>
+          <el-image @click="shutDown" style="margin-left: 10px" src="/images/x-circle.svg"></el-image>
         </div>
       </div>
 <!--      <SearchBar></SearchBar>-->
+      <div class="wave-balance-box">
+        <div style="display: flex">
+          <el-image src="/images/WaveMoneyLogoV2.svg"></el-image>
+        </div>
+        <div style="margin-left: 10px">
+          <p class="user-name">{{ user.name }}</p>
+          <p class="user-balance">{{ balance }}</p>
+        </div>
+      </div>
       <Carousel></Carousel>
       <Services :providers="providers"></Services>
     </div>
@@ -66,6 +75,10 @@ import useWaveMoneySDK from "~/composables/useWaveMoneySDK"
 const balance = ref();
 const { providers, fetchProviders } = useProvider();
 
+const shutDown = async () => {
+  await useWaveMoneySDK().shutDownAppFromWave()
+}
+
 onMounted(async () => {
   const value = await useWaveMoneySDK().getWaveUserWalletBalance()
   balance.value = new Intl.NumberFormat('en-US', {
@@ -93,6 +106,36 @@ const { user, drawer } = useHome();
 .header {
   display: flex;
   align-items: center;
+}
+
+.wave-balance-box {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #E9F2FF;
+  border-radius: 8px;
+  margin: 10px 0 15px;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .user-name {
+    color: #787878;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 18px */
+  }
+
+  .user-balance {
+    color: #3188E1;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 27px */
+  }
 }
 
 .header-image  {
