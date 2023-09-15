@@ -8,6 +8,7 @@
             v-model="dateForm.date"
             placeholder="Pick a date"
             class="datetime-input"
+            :disabled-date="disableDates"
           />
         </el-form-item>
         <el-form-item label="Start Time" style="display: block">
@@ -15,6 +16,7 @@
             v-model="dateForm.time"
             placeholder="Pick time slot"
             class="datetime-input"
+            :disabled-hours="disabledHours"
           />
         </el-form-item>
       </el-form>
@@ -100,17 +102,20 @@
     </el-button>
   </el-drawer>
 </template>
-<script setup>
-import { reactive } from "vue";
+<script setup lang="ts">
 import { ArrowDownBold, EditPen } from "@element-plus/icons-vue";
 import useCheckout from "~/composables/useCheckout";
 
-const { toggleDrawer, drawer, radio, address, booking, selectedRadio } =
-  useCheckout();
-const dateForm = reactive({
-  date: "",
-  time: "",
-});
+const {
+  toggleDrawer,
+  drawer,
+  radio,
+  address,
+  selectedRadio,
+  dateForm,
+  disableDates,
+} = useCheckout();
+
 watch(selectedRadio, (newValue) => {
   const selectedRadioItem = radio.value.find((item) => item.value === newValue);
   if (selectedRadioItem) {
@@ -118,6 +123,16 @@ watch(selectedRadio, (newValue) => {
   }
   toggleDrawer();
 });
+const makeRange = (start: number, end: number) => {
+  const result: number[] = [];
+  for (let i = start; i <= end; i++) {
+    result.push(i);
+  }
+  return result;
+};
+const disabledHours = () => {
+  return makeRange(0, 8).concat(makeRange(19, 23));
+};
 </script>
 <style>
 .checkout-content {

@@ -32,10 +32,10 @@
     <div class="service-provider">
       <div style="display: flex; justify-content: space-between">
         <el-text class="service-text">Best Service Providers</el-text>
-        <el-link type="primary" :underline="false">See All</el-link>
+        <el-link type="primary" :underline="false" @click="goToProviders">See All</el-link>
       </div>
-      <div v-for="user in users" :key="user">
-        <BtnCard :UserName="user.name" :serviceName="user.service"></BtnCard>
+      <div v-for="employee in firstThreeProviders" :key="employee.id">
+        <BtnCard :Employee="employee"></BtnCard>
       </div>
     </div>
     <el-text class="service-text">Are You Interested?</el-text>
@@ -67,12 +67,14 @@
 </template>
 <script setup>
 import { ArrowRight, Position } from "@element-plus/icons-vue";
+import { computed } from "vue";
+import useHome from "~/composables/useHome";
+const { providers, goToProviders } = useHome();
 
-const users = ref([
-  { name: "John Doe", service: "Laundry" },
-  { name: "Jane Smith", service: "Cleaning" },
-  { name: "Bob Johnson", service: "Laundry" },
-]);
+const firstThreeProviders = computed(() => {
+  const allProviders = providers;
+  return allProviders.slice(0, 3);
+});
 const goToService = async (route) => {
   navigateTo(route);
 };

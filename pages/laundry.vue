@@ -2,9 +2,9 @@
   <TopHeader :to="'home'"></TopHeader>
   <div class="laundry-container">
     <!-- use this if the user has not chosen any item -->
-    <!-- <ChooseItems></ChooseItems> -->
+    <ChooseItems></ChooseItems>
     <!-- use this when the user has chosen items, go to choose date an time -->
-    <Checkout></Checkout>
+    <!-- <Checkout></Checkout> -->
   </div>
 </template>
 <script>
