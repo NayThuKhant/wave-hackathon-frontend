@@ -1,20 +1,22 @@
 <template>
-  <TopHeader :to="profile"></TopHeader>
+  <TopHeader :to="'home'"></TopHeader>
   <div style="margin: 50px 20px 0px 20px">
     <SearchBar></SearchBar>
-    <div v-for="emp in providers" :key="emp.id">
-      <BtnCard :Employee="emp"></BtnCard>
+    <div v-loading="!providers.length">
+      <template v-for="emp in providers" :key="emp.id">
+        <BtnCard :Employee="emp"></BtnCard>
+      </template>
     </div>
   </div>
 </template>
 
 <script setup scoped>
-import useHome from "~/composables/useHome";
+import useProvider from "~/composables/useProvider";
 
-const { providers, fetchProvidersList } = useHome();
+const { providers, fetchProviders } = useProvider();
 
 onMounted(async () => {
-  await fetchProvidersList();
+  await fetchProviders();
 });
 </script>
 <style lang="scss">

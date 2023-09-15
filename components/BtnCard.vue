@@ -1,7 +1,7 @@
 <template>
   <el-card class="card-container" shadow="hover">
     <el-avatar class="card-user"><User /></el-avatar>
-    <div style="margin-left: 10px">
+    <div style="margin-left: 16px">
       <span style="display: block">{{ Employee.name }}</span>
       <el-text
           style="font-size: 10px; padding-right: 5px"
@@ -11,7 +11,7 @@
         <span v-if="category.id < Employee.categories.length - 1">|</span>
       </el-text>
     </div>
-    <div>
+    <div style="flex: 1; text-align: right">
       <el-text class="card-text">
         <el-icon class="card-icon"><StarFilled /></el-icon>
         4.5
@@ -49,7 +49,6 @@ const props = defineProps({
   margin-right: 6px;
 }
 .card-text {
-  display: flex;
   justify-content: center;
   align-items: center;
 }
