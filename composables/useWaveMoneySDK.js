@@ -12,7 +12,8 @@ export default function () {
         await ensureWaveUserIsLoggedIn()
         const response = await window.WaveJsSDK.userModule?.getUserInformation()
         const data = response?.response.data
-
+        // REMOVE
+        alert(data);
         if (data) return {name, dob, gender, misisdn, nrc, kyc_status} = data
 
         // TODO default value for testing without wave money sdk
