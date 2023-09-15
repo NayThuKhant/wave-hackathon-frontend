@@ -2,14 +2,14 @@
   <div class="laundry-card" shadow="hover">
     <div style="display: flex; align-items: center">
       <div>
-        <span class="item-name">T-shirt</span>
-        <el-text style="font-size: 12px">MMK 300</el-text>
+        <span class="item-name">{{ Item.name }}</span>
+        <el-text style="font-size: 12px">MMK {{ Item.price }}</el-text>
       </div>
     </div>
     <el-input-number
       v-model="num"
       :min="0"
-      :max="10"
+      :max="70"
       @change="handleChange"
       class="item-count"
     />
@@ -17,11 +17,23 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineProps, defineEmits } from "vue";
 
-const num = ref(1);
+const emits = defineEmits(["updateTotal"]);
+
+const props = defineProps({
+  Item: {
+    type: Object,
+    required: true,
+  },
+});
+const num = ref(0);
 const handleChange = () => {
-  console.log(num);
+  // Emit the updated quantity and price
+  emits("updateTotal", {
+    quantity: num.value,
+    price: Item.price,
+  });
 };
 </script>
 

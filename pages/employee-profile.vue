@@ -92,7 +92,7 @@ const { userProfile } = useProfile();
   width: 40%;
 }
 .check-service .el-checkbox__label {
-  padding: 16px;
+  padding: 0;
 }
 .profile-foo {
   padding: 20px;

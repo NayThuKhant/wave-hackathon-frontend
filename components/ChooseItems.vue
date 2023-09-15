@@ -7,7 +7,9 @@
       <el-text class="note-text"
         >Note:Cost for this service is charged per item</el-text
       >
-      <LaundryCard v-for="item in 5"></LaundryCard>
+      <div v-for="item in items">
+        <LaundryCard :Item="item"></LaundryCard>
+      </div>
     </div>
   </div>
   <div class="total-foo">
@@ -29,6 +31,14 @@
 </template>
 <script setup>
 import LaundryCard from "~/components/LaundryCard.vue";
+import useCheckout from "~/composables/useCheckout";
+
+const { fetchItemList, items } = useCheckout();
+const laundryItems = items.value;
+console.log(items);
+onMounted(async () => {
+  await fetchItemList();
+});
 </script>
 <style>
 .laundry-content {

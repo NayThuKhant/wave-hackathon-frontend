@@ -3,60 +3,69 @@
   <div style="margin: 20px 20px 70px 20px">
     <div class="addr-container">
       <el-text size="large">Welcome, {{ user.name }}</el-text>
-      <el-link size="small" type="primary" class="addr-link" :underline="false" @click="toggleDrawer"
-      >Add New Address
-      </el-link
-      >
+      <el-link
+        size="small"
+        type="primary"
+        class="addr-link"
+        :underline="false"
+        @click="toggleDrawer"
+        >Add New Address
+      </el-link>
       <SearchBar></SearchBar>
       <Carousel></Carousel>
       <Services></Services>
     </div>
     <el-drawer
-        v-model="drawer"
-        direction="btt"
-        class="bottom-sheet"
-        :with-header="false"
+      v-model="drawer"
+      direction="btt"
+      class="bottom-sheet"
+      :with-header="false"
     >
       <el-divider
-          class="thick-line"
-          content-position="center"
-          :height="6"
+        class="thick-line"
+        content-position="center"
+        :height="6"
       ></el-divider>
 
       <el-container class="radio-card">
-        <el-text class="address-text">No (24), 40th Street, Botahtaung, Yangon, Somewhere on the earth, someone on the
-          earth
+        <el-text class="address-text"
+          >No (24), 40th Street, Botahtaung, Yangon, Somewhere on the earth,
+          someone on the earth
         </el-text>
         <el-icon>
-          <edit-pen/>
+          <edit-pen />
         </el-icon>
       </el-container>
 
       <el-container class="radio-card">
-        <el-text class="address-text">No (24), 40th Street, Botahtaung, Yangon, Somewhere on the earth, someone on the
-          earth
+        <el-text class="address-text"
+          >No (24), 40th Street, Botahtaung, Yangon, Somewhere on the earth,
+          someone on the earth
         </el-text>
         <el-icon>
-          <edit-pen/>
+          <edit-pen />
         </el-icon>
       </el-container>
 
       <el-button
-          type="primary"
-          style="width: 100%; padding: 8px 12px; border-radius: 8px"
-      >Add New Address
-      </el-button
-      >
+        type="primary"
+        style="width: 100%; padding: 8px 12px; border-radius: 8px"
+        >Add New Address
+      </el-button>
     </el-drawer>
   </div>
   <BaseFooter :active="'home'"></BaseFooter>
 </template>
 
 <script setup>
-import {EditPen} from "@element-plus/icons-vue";
+import { EditPen } from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
 
-const {user, drawer, toggleDrawer} = useHome()
+const { user, drawer, toggleDrawer, fetchProvidersList } = useHome();
+
+onMounted(async () => {
+  await fetchProvidersList();
+});
 </script>
 
 <style lang="scss">
@@ -97,7 +106,6 @@ const {user, drawer, toggleDrawer} = useHome()
   border-top: 4px solid #787878;
   width: 100px;
   margin: 0 auto 20px;
-
 }
 
 .radio-card {
@@ -105,7 +113,7 @@ const {user, drawer, toggleDrawer} = useHome()
   align-items: center;
   margin-bottom: 10px;
   padding: 12px;
-  border: 0.5px solid #CCCCCC;
+  border: 0.5px solid #cccccc;
   border-radius: 8px;
 }
 
