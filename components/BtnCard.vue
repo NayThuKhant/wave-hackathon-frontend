@@ -2,7 +2,7 @@
   <el-card class="card-container" shadow="hover">
     <el-avatar class="card-user"><User /></el-avatar>
     <div style="margin-left: 16px">
-      <span style="display: block">{{ Employee.name }}</span>
+      <span style="display: block; font-size: 13px; font-weight: bold">{{ Employee.name }}</span>
       <el-text
           style="font-size: 10px; padding-right: 5px"
           v-for="category in Employee.categories"

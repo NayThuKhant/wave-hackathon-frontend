@@ -3,13 +3,15 @@
   <div style="margin: 20px 20px 70px 20px">
     <div class="addr-container">
       <div class="header">
-        <el-image class="header-image" src="/images/WaveMoneyLogo.svg"></el-image>
+        <div style="flex: 1">
+          <el-image class="header-image" src="/images/ourlogo.png"></el-image>
+        </div>
         <div>
-          <el-text size="small">Welcome, {{ user.name }}</el-text>
-          <el-text size="large" class="addr-link balance" :underline="false" type="primary">{{ balance }}</el-text>
+          <el-image src="/images/topsearchicon.svg"></el-image>
+          <el-image style="margin-left: 10px" src="/images/x-circle.svg"></el-image>
         </div>
       </div>
-      <SearchBar></SearchBar>
+<!--      <SearchBar></SearchBar>-->
       <Carousel></Carousel>
       <Services :providers="providers"></Services>
     </div>
@@ -90,10 +92,13 @@ const { user, drawer } = useHome();
 
 .header {
   display: flex;
+  align-items: center;
 }
 
 .header-image  {
   margin-right: 16px;
+  height: 48px;
+  width: auto;
 }
 
 .addr-link {

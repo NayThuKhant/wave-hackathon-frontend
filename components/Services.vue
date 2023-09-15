@@ -35,7 +35,7 @@
         <el-text class="service-text">Best Service Providers</el-text>
         <el-link type="primary" :underline="false" @click="goToProviders">See All</el-link>
       </div>
-      <div v-for="employee in firstThreeProviders" :key="employee.id">
+      <div v-loading="!firstThreeProviders.length" v-for="employee in firstThreeProviders" :key="employee.id">
         <BtnCard :Employee="employee"></BtnCard>
       </div>
     </div>
