@@ -1,5 +1,7 @@
 export default function () {
     const ensureWaveUserIsLoggedIn = async () => {
+        // REMOVE
+        alert(window.WaveJsSDK.userModule);
         const response = await window.WaveJsSDK.userModule?.getUserLoginStatus()
         const loginStatus = response?.response.data.is_logged_in
 
