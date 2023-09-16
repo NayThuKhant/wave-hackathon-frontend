@@ -26,7 +26,7 @@ export default function () {
         }
     }
 
-    const getWaveUserDevice = async () => {
+    const   getWaveUserDevice = async () => {
         await ensureWaveUserIsLoggedIn()
         const response = await window.WaveJsSDK.deviceModule?.getDeviceInformation()
         const data = response?.response.data
