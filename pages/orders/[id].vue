@@ -158,12 +158,31 @@ const formatTime = (date) => {
   const options = {hour: "numeric", minute: "numeric"};
   return new Date(date).toLocaleDateString("Rangoon", options);
 };
+
+import {reloadNuxtApp} from "nuxt/app";
+
 const getOrderDetail = async () => {
   $axios.get(`${config.public.backendApi}/orders/${route.params.id}`, axiosHeaders)
       .then((response) => {
         orderDetail.value = response.data.data
         status.value = orderDetail?.value.status
         updateForms(orderDetail?.value.status)
+
+
+        if (status.value === "ORDERED") {
+          setTimeout(() => {
+            $axios.put(
+                `${config.public.backendApi}/orders/${orderDetail?.value.id}/assign`, {status: formValue.value}, axiosHeaders
+            ).then((res) => {
+              const id = route.params.id
+              reloadNuxtApp({
+                path: "/orders/" + id,
+                ttl: 1000, // default 10000
+              });
+            })
+          }, 5000)
+
+        }
       })
 }
 const numberFormat = (value) => {
@@ -175,7 +194,7 @@ const numberFormat = (value) => {
 
 const goToBackend = async () => {
 
-  if (formValue.value == "PAID") {
+  if (formValue.value === "PAID") {
     const response = await makePayment(orderDetail?.value.total_price, "9784489866")
     if (response) {
 
@@ -185,7 +204,7 @@ const goToBackend = async () => {
         orderDetail.value = res.data.data
       })
 
-    }else {
+    } else {
       alert("Something went wrong with wave payment")
     }
   } else {
@@ -195,6 +214,11 @@ const goToBackend = async () => {
       orderDetail.value = res.data.data
     })
   }
+  const id = route.params.id
+  reloadNuxtApp({
+    path: "/orders/" + id,
+    ttl: 1000, // default 10000
+  });
 }
 
 onMounted(async () => {
