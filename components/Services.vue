@@ -9,13 +9,12 @@
       >
         <div style="display: flex; align-items: center">
           <img alt="" src="@/assets/images/laundry.svg"/>
-          <span style="margin-left: 10px">Laundry</span>
+          <span style="margin-left: 10px; font-size: 14px">Laundry</span>
         </div>
         <el-icon class="service-icon">
           <ArrowRight/>
         </el-icon>
       </el-card>
-      <div style="width: 16px"></div>
       <el-card
           class="service-card"
           shadow="hover"
@@ -24,7 +23,7 @@
       >
         <div style="display: flex; align-items: center">
           <img src="@/assets/images/cleaning.svg"/>
-          <span style="margin-left: 10px">Household</span>
+          <span style="margin-left: 10px; font-size: 14px">Household</span>
         </div>
         <el-icon class="service-icon">
           <ArrowRight/>
@@ -85,7 +84,7 @@ const goToService = async (route) => {
 
 <style lang="scss">
 .services {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .service-text {
@@ -101,6 +100,7 @@ const goToService = async (route) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 .service-card {

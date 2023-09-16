@@ -40,14 +40,16 @@ import { ref } from "vue";
 const checkedServices = ref([]);
 const categories = ref([
   {
-    text: "Laundry Services",
+    text: "Laundry",
     label: 1,
-    key: 1
+    key: 1,
+    id: 1
   },
   {
-    text: "Household Services",
+    text: "Household",
     label: 2,
-    key: 2
+    key: 2,
+    id: 1
   }
 ])
 
@@ -87,6 +89,7 @@ const updateCategories = () => {
 }
 .to-check-services {
   display: flex;
+  gap: 16px;
   align-items: center;
   justify-content: space-between;
 }

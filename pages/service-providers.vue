@@ -15,19 +15,18 @@
         </el-icon>
       </template>
     </el-input>
-    <div v-loading="!searchedProviders.length">
-      <template v-for="emp in searchedProviders" :key="emp.id">
-        <BtnCard :Employee="emp"></BtnCard>
-      </template>
-    </div>
+    <template v-for="emp in searchedProviders" :key="emp.id">
+      <BtnCard :Employee="emp"></BtnCard>
+    </template>
   </div>
 </template>
 
 <script setup>
+import {Search} from "@element-plus/icons-vue";
 import debounce from 'lodash.debounce'
 import useProvider from "~/composables/useProvider";
 
-const {providers, fetchProviders,search, clearSearch, setSearchedProviders, searchedProviders} = useProvider();
+const {providers, fetchProviders, search, clearSearch, setSearchedProviders, searchedProviders} = useProvider();
 
 onMounted(async () => {
   await fetchProviders();
