@@ -11,8 +11,6 @@
           <WaveCloseButton />
         </div>
       </div>
-
-      <SamplePayment/>
 <!--      <SearchBar></SearchBar>-->
       <div class="wave-balance-box">
         <div style="display: flex">
