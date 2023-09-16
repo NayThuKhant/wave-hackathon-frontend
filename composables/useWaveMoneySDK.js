@@ -70,7 +70,6 @@ export default function () {
 
         await ensureWaveUserIsLoggedIn()
         const response = await window.WaveJsSDK.paymentModule?.makePayment(amount, receiverMsisdn, orderId)
-        alert(JSON.stringify(response))
         const data = response?.response.data
 
         if (data) return data
