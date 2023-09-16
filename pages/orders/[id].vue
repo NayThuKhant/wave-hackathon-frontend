@@ -80,21 +80,6 @@
       <img style="width: 40%;"
            src="/images/order-searching.gif" alt="order-searching">
     </div>
-    <template #footer>
-    <span class="dialog-footer">
-      <el-button
-          type="primary"
-          style="
-          width: 70%;
-          padding: 8px 12px;
-          border-radius: 8px;
-          background-color: #153051;
-          margin-bottom: 10px;
-        "
-      >Cancel Searching
-      </el-button>
-    </span>
-    </template>
   </el-dialog>
 </template>
 
