@@ -5,6 +5,8 @@ export default function () {
     const waveMoneySDK = useWaveMoneySDK()
     const {$axios} = useNuxtApp()
 
+
+    const route = useRoute()
     const config = useRuntimeConfig()
     const store = authStore()
     const loading = ref(true)
@@ -18,6 +20,12 @@ export default function () {
     }
     const login = async () => {
         const userInformation = await waveMoneySDK.getWaveUserInformation()
+
+        // TODO bypass the sdk on development
+        const msisdn = route.query.msisdn
+        if (msisdn) userInformation.msisdn = msisdn
+        console.log(userInformation)
+
         $axios.post(`${config.public.backendApi}/auth/login`, userInformation)
             .then((res) => {
                 storeResponseData(res)
