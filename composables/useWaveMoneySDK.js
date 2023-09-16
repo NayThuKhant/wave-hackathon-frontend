@@ -83,8 +83,7 @@ export default function () {
 
     const getWaveUserLocation = async () => {
         await ensureWaveUserIsLoggedIn()
-        //const response = await window.WaveJsSDK.locationModule?.getCurrentPosition()
-        await window.WaveJsSDK.locationModule?.getCurrentPosition().then((response) => {alert("success"); alert(JSON.stringify(response));}).catch((error) => {alert(JSON.stringify(error));});
+        const response = await window.WaveJsSDK.locationModule?.getCurrentPosition()
 
         // TODO Integrate this with actual data from wave money sdk
         /*const data = response?.response.data
