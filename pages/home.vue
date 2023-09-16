@@ -134,7 +134,7 @@ onMounted(async () => {
 
 const { user, drawer, goToProviders } = useHome();
 const dynamicHeight = computed(() => {
-  if (user.employee && user.on_hold_balance) {
+  if (user.employee) {
     return "70px";
   } else {
     return "85px";
@@ -142,7 +142,7 @@ const dynamicHeight = computed(() => {
 });
 
 const dynamicMargin = computed(() => {
-  if (user.employee && user.on_hold_balance) {
+  if (user.employee) {
     return "115px 20px 70px 20px";
   } else {
     return "50px 20px 70px 20px";
