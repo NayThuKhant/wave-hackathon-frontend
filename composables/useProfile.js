@@ -12,6 +12,7 @@ export default function () {
     }
     const userProfile = store.getUserData
     const isActive = ref(userProfile.employee ? true : false)
+    const subscribedCategories = ref(userProfile.categories.map(obj => obj.id))
 
     const fetchMe = () => {
         $axios.get(`${config.public.backendApi}/me`, axiosHeaders)
@@ -23,15 +24,17 @@ export default function () {
     const startWorking = async () => {
         $axios.post(`${config.public.backendApi}/start-working`, {}, axiosHeaders)
             .then((response) => {
+                fetchMe()
                 navigateTo('employee-profile')
             })
     }
     const subscribeCategories = (data) => {
         $axios.put(`${config.public.backendApi}/subscribe-categories`, data, axiosHeaders)
             .then((response) => {
+                fetchMe()
                 navigateTo('profile')
             })
     }
 
-    return {userProfile, startWorking, isActive, subscribeCategories}
+    return {userProfile, startWorking, isActive, subscribeCategories, subscribedCategories}
 }

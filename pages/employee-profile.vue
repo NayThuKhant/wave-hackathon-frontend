@@ -9,7 +9,7 @@
         WaveApp</el-text
       >
       <el-text class="emp-sub-header"> Choose your prefer service</el-text>
-      <el-checkbox-group v-model="checkedServices" class="to-check-services">
+      <el-checkbox-group v-model="subscribedCategories" class="to-check-services">
         <el-checkbox v-for="category in categories" :label="category.label" class="check-service" :key="category.key"
           ><div style="display: flex; align-items: center">
             {{ category.text  }}
@@ -37,7 +37,6 @@
 <script setup>
 import useProfile from "~/composables/useProfile";
 
-const checkedServices = ref([]);
 const categories = ref([
   {
     text: "Laundry",
@@ -53,12 +52,12 @@ const categories = ref([
   }
 ])
 
+const { subscribeCategories, subscribedCategories } = useProfile();
 
-const isDisabled = computed(() => checkedServices.value.length ? false : true)
-const { subscribeCategories } = useProfile();
+const isDisabled = computed(() => subscribedCategories.value.length ? false : true)
 
 const updateCategories = () => {
-  subscribeCategories({category_ids: checkedServices.value})
+  subscribeCategories({category_ids: subscribedCategories.value})
 }
 </script>
 <style lang="scss">
