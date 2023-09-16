@@ -6,6 +6,7 @@
         <el-form-item label="Date" style="display: block">
           <el-date-picker
             v-model="dateForm.date"
+            :editable="false"
             placeholder="Pick a date"
             class="datetime-input"
             :disabled-date="disableDates"
@@ -14,6 +15,7 @@
         </el-form-item>
         <el-form-item label="Start Time" style="display: block">
           <el-time-picker
+              :editable="false"
             v-model="dateForm.time"
             placeholder="Pick time slot"
             class="datetime-input"
