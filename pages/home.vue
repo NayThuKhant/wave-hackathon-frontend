@@ -7,7 +7,7 @@
           <el-image class="header-image" src="/images/ourlogo.png"></el-image>
         </div>
         <div>
-          <el-image @click="goToProviders" src="/images/topsearchicon.svg"></el-image>
+          <el-image @click="goToProviders" src="/images/search.svg"></el-image>
           <WaveCloseButton />
         </div>
       </div>
@@ -107,7 +107,7 @@ const { user, drawer, goToProviders } = useHome();
 .wave-balance-box {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
+  padding: 20px 16px;
   background-color: #E9F2FF;
   border-radius: 8px;
   margin: 10px 0 15px;
@@ -130,7 +130,6 @@ const { user, drawer, goToProviders } = useHome();
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
-    line-height: 150%; /* 27px */
   }
 }
 
