@@ -1,12 +1,12 @@
 <template>
   <div class="block text-center">
     <el-carousel
-      height="150px"
+      height="auto"
       arrow="never"
       class="home-carousel"
       trigger="click"
     >
-      <el-carousel-item v-for="item in carouselItems" :key="item">
+      <el-carousel-item v-for="item in carouselItems" :key="item" style="height: auto;">
         <img :src="item" alt="Carousel Image" style="width: 100%" />
       </el-carousel-item>
     </el-carousel>
