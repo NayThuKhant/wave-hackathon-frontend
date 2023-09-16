@@ -11,7 +11,6 @@
   </div>
 </template>
 <script setup>
-const route = useRoute()
 const isReadyCheckout = ref(false)
 
 const readyCheckoutToggle = () => {

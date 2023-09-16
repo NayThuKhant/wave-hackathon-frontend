@@ -25,6 +25,9 @@
         </el-form-item>
       </el-form>
     </div>
+
+    <p v-if="employee" style="margin-bottom: 0">Service Offered To:</p>
+    <BtnCard v-if="employee" :Employee="employee" />
     <!-- <div
       class="ep-bg-purple-dark"
       style="padding: 4px; background-color: #f2f2f2; margin: 16px 0"
@@ -95,7 +98,7 @@
       <img src="/images/map-pin.svg" alt="map-pin">
       <p>Use Current Location</p>
     </div>
-    <el-radio-group v-if="addresses" v-model="selectedRadio" class="radio-card">
+    <el-radio-group v-if="addresses.length" v-model="selectedRadio" class="radio-card">
       <el-radio
         v-for="address in addresses"
         :label="address.id"
@@ -124,6 +127,7 @@ import {isInteger} from "lodash-es";
 const { getWaveUserLocation } = useWaveMoneySDK()
 const route = useRoute()
 const realAddress = ref()
+const employee = ref()
 const {
   toggleDrawer,
   drawer,
@@ -135,7 +139,8 @@ const {
   totalAmount,
   addresses,
   fetchAddressList,
-  checkout
+  checkout,
+  getEmployee
 } = useCheckout();
 
 const startBooking = async () => {
@@ -144,13 +149,18 @@ const startBooking = async () => {
     category_id: route.query.category,
     address_id: null,
     address: null,
-    services: checkoutReadyServices
+    services: checkoutReadyServices,
+    employee_id: null
   }
 
   if (isInteger(realAddress.value)) {
     data.address_id= realAddress.value
   } else {
     data.address = realAddress.value
+  }
+
+  if(employee.value) {
+    data.employee_id = employee.value.id
   }
   await checkout(data)
 }
@@ -183,6 +193,9 @@ const disabledHours = () => {
 
 onMounted(async () => {
   await fetchAddressList()
+  if(route.query.employee_id) {
+    employee.value = await getEmployee(route.query.employee_id)
+  }
 });
 </script>
 <style lang="scss">
