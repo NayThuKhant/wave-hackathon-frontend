@@ -7,7 +7,7 @@
           <el-image class="header-image" src="/images/ourlogo.png"></el-image>
         </div>
         <div>
-          <el-image @click="goToProviders" src="/images/search.svg"></el-image>
+          <el-image @click="goToProviders" src="/images/SearchProvidersIcon.svg"></el-image>
           <WaveCloseButton />
         </div>
       </div>

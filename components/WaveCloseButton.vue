@@ -1,5 +1,5 @@
 <template>
-  <el-image @click="shutDown" style="margin-left: 10px" src="/images/x-circle.svg"></el-image>
+  <el-image @click="shutDown" style="margin-left: 10px" src="/images/exit.svg"></el-image>
 </template>
 
 <script setup>
