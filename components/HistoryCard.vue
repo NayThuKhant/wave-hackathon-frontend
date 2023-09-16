@@ -1,10 +1,13 @@
 <template>
   <div class="history-card">
-    <img :src="determineImage(props.order.category.id)" alt="">
+    <img :src="determineImage(props.order.category.id)" alt="" />
     <div class="text-section">
       <div class="history-card-block">
-        <div style="font-size: 14px;">{{ props.order.category.name }}</div>
-        <div style="font-size: 14px;">{{ props.order.status }}</div>
+        <el-text style="font-size: 14px">{{
+          props.order.category.name
+        }}</el-text>
+        <!-- <div style="font-size: 14px;">{{ props.order.status }}</div> -->
+        <el-tag type="warning">{{ props.order.status }}</el-tag>
       </div>
       <div class="history-card-block">
         <div class="prize">{{ totalPrice }}</div>
@@ -14,33 +17,32 @@
   </div>
 </template>
 <script setup>
-import {Right} from "@element-plus/icons-vue";
+import { Right } from "@element-plus/icons-vue";
 
-const {determineImage, formatDate} = useHistory()
+const { determineImage, formatDate } = useHistory();
 
 const props = defineProps({
   order: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 });
 
-const totalPrice = computed(() => new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'MMK'
-    }).format(props.order.total_price)
-)
-
-
+const totalPrice = computed(() =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "MMK",
+  }).format(props.order.total_price)
+);
 </script>
 
 <style lang="scss">
 .history-card {
   border-bottom: 1px solid #ccc;
-  gap: 26px;
-  height: 90px;
+  gap: 20px;
   display: flex;
   align-items: center;
+  padding: 15px 10px;
 }
 
 .text-section {
@@ -54,8 +56,9 @@ const totalPrice = computed(() => new Intl.NumberFormat('en-US', {
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
   justify-content: space-between;
+  text-align: right;
 
   .prize {
     color: var(--grayscale-gray-900, #212121);
