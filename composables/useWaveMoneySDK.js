@@ -72,7 +72,7 @@ export default function () {
         await ensureWaveUserIsLoggedIn()
         alert("user logged in")
         try {
-            const response = await window.WaveJsSDK.makePayment(1000, 9784489866, 10000)
+            const response = await window.WaveJsSDK.paymentModule?.makePayment(1000, "9784489866", "xydafsdfd")
         } catch (e) {
             alert(JSON.stringify(e))
         }
