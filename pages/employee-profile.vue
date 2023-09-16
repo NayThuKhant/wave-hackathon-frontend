@@ -12,8 +12,8 @@
       <el-checkbox-group v-model="subscribedCategories" class="to-check-services">
         <el-checkbox v-for="category in categories" :label="category.label" class="check-service" :key="category.key"
           ><div style="display: flex; align-items: center">
-            {{ category.text  }}
             <img src="@/assets/images/cleaning.svg" />
+            <span style="margin-left: 10px;">{{ category.text  }}</span>
           </div>
         </el-checkbox>
       </el-checkbox-group>
@@ -89,7 +89,7 @@ const updateCategories = () => {
 }
 .to-check-services {
   display: flex;
-  gap: 16px;
+  gap: 10px;
   align-items: center;
   justify-content: space-between;
 }
