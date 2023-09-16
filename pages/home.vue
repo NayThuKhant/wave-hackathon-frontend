@@ -1,6 +1,6 @@
 <template>
   <!-- <TopHeader></TopHeader> -->
-  <div style="background-color: #f7f7f7;">
+  <div style="background-color: #f7f7f7">
     <div class="top-header" :style="{ height: dynamicHeight }">
       <div class="header">
         <div style="flex: 1">
@@ -35,11 +35,11 @@
           </div>
           <el-image src="/images/WaveMoneyLogoV2.svg"></el-image>
         </div>
-        <div v-if="user.employee">
+        <div v-if="user.employee && user.on_hold_balance">
           <el-divider style="margin: 0 auto"></el-divider>
           <div>
-            <p class="balance-title">OnHold Balance</p>
-            <p class="balance-data">{{ balance }}</p>
+            <p class="balance-title" style="margin-top: 5px">OnHold Balance</p>
+            <p class="balance-data">MMK {{ user.on_hold_balance }}</p>
           </div>
         </div>
       </div>
@@ -134,7 +134,7 @@ onMounted(async () => {
 
 const { user, drawer, goToProviders } = useHome();
 const dynamicHeight = computed(() => {
-  if (user.employee) {
+  if (user.employee && user.on_hold_balance) {
     return "70px";
   } else {
     return "85px";
@@ -142,7 +142,7 @@ const dynamicHeight = computed(() => {
 });
 
 const dynamicMargin = computed(() => {
-  if (user.employee) {
+  if (user.employee && user.on_hold_balance) {
     return "115px 20px 70px 20px";
   } else {
     return "50px 20px 70px 20px";
