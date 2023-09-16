@@ -82,8 +82,11 @@ export default function () {
     }
 
     const getWaveUserLocation = async () => {
+        // REMOVE
+        alert("TEST");
         await ensureWaveUserIsLoggedIn()
         const response = await window.WaveJsSDK.locationModule?.getCurrentPosition()
+        // REMOVE
         alert(response);
         const data = response?.response.data
 
