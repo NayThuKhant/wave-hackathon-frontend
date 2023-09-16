@@ -11,6 +11,8 @@
           <WaveCloseButton />
         </div>
       </div>
+
+      <SamplePayment/>
 <!--      <SearchBar></SearchBar>-->
       <div class="wave-balance-box">
         <div style="display: flex">
@@ -71,6 +73,7 @@ import { EditPen } from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
 import useProvider from "~/composables/useProvider";
 import useWaveMoneySDK from "~/composables/useWaveMoneySDK"
+import SamplePayment from "~/components/SamplePayment.vue";
 
 const balance = ref();
 const { providers, fetchProviders } = useProvider();

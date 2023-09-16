@@ -26,7 +26,7 @@ export default function () {
         }
     }
 
-    const   getWaveUserDevice = async () => {
+    const getWaveUserDevice = async () => {
         await ensureWaveUserIsLoggedIn()
         const response = await window.WaveJsSDK.deviceModule?.getDeviceInformation()
         const data = response?.response.data
@@ -58,6 +58,26 @@ export default function () {
         return response?.response.data
     }
 
+    const makePayment = async (amount, receiverMsisdn, orderId) => {
+
+        // TODO default value for testing without wave money sdk
+        if (amount && receiverMsisdn && orderId) {
+            amount = 50
+            receiverMsisdn = '9784489866'
+            orderId = 1
+        }
+
+        await ensureWaveUserIsLoggedIn()
+        const response = await window.WaveJsSDK.paymentModule?.makePayment({amount, receiverMsisdn, orderId})
+        const data = response?.response.data
+
+        if (data) return  data
+
+        return {
+            "transactionId": "123456789",
+            "transactionDate": "2021-09-01",
+        }
+    }
 
     const getWaveUserLocation = async () => {
         await ensureWaveUserIsLoggedIn()
@@ -94,6 +114,7 @@ export default function () {
         getWaveUserDevice,
         getWaveUserLocation,
         getWaveUserWalletBalance,
-        shutDownAppFromWave
+        shutDownAppFromWave,
+        makePayment
     }
 }
