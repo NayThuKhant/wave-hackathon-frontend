@@ -23,7 +23,6 @@ export default function () {
     const startWorking = async () => {
         $axios.post(`${config.public.backendApi}/start-working`, {}, axiosHeaders)
             .then((response) => {
-                fetchMe()
                 navigateTo('employee-profile')
             })
     }
