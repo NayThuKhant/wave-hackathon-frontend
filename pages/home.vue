@@ -174,7 +174,7 @@ const dynamicMargin = computed(() => {
   position: absolute;
   right: 50%;
   transform: translate(50%);
-  width: 100%;
+  width: 85%;
   max-width: 340px;
   z-index: 1000;
   margin: 10px 0;
