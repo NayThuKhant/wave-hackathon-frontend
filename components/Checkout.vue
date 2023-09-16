@@ -39,24 +39,27 @@
     <div style="padding-bottom: 20px">
       <el-text class="checkout-text">Service Summary</el-text>
       <div
+        v-for="service in checkoutReadyServices"
+        :key="service.service_id"
         style="
           display: flex;
           align-items: center;
           justify-content: space-between;
+          padding: 8px 0;
         "
       >
         <div>
-          <span class="bold-text">T-shirt</span>
-          <el-text style="font-size: 12px">MMK 300</el-text>
+          <span class="bold-text">{{ service.service_name }}</span>
+          <el-text style="font-size: 12px">MMK {{ service.price }}</el-text>
         </div>
-        <span class="bold-text">10 items</span>
+        <span class="bold-text">{{ service.quantity }} items</span>
       </div>
     </div>
   </div>
   <div class="checkout-foo">
     <div class="text-flex">
       <el-text class="checkout-text">Total</el-text>
-      <el-text class="checkout-text">MMK 0</el-text>
+      <el-text class="checkout-text">MMK {{ totalAmount }}</el-text>
     </div>
     <el-button
       type="primary"
@@ -87,6 +90,7 @@
       <el-radio
         v-for="item in radio"
         :label="item.value"
+        :key="item.value"
         size="large"
         class="radio-label"
         border
@@ -114,6 +118,8 @@ const {
   selectedRadio,
   dateForm,
   disableDates,
+  checkoutReadyServices,
+  totalAmount
 } = useCheckout();
 
 watch(selectedRadio, (newValue) => {

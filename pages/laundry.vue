@@ -2,14 +2,20 @@
   <TopHeader :to="'home'"></TopHeader>
   <div class="laundry-container">
     <!-- use this if the user has not chosen any item -->
-    <ChooseItems></ChooseItems>
+    <ChooseItems 
+      @setCheckoutReady="readyCheckoutToggle"
+      v-if="!isReadyCheckout"
+    ></ChooseItems>
     <!-- use this when the user has chosen items, go to choose date an time -->
-    <!-- <Checkout></Checkout> -->
+    <Checkout v-else></Checkout>
   </div>
 </template>
-<script>
-import Checkout from "~/components/Checkout.vue";
-import ChooseItems from "~/components/ChooseItems.vue";
+<script setup>
+const isReadyCheckout = ref(false)
+
+const readyCheckoutToggle = () => {
+  isReadyCheckout.value = !isReadyCheckout.value
+}
 </script>
 <style lang="scss">
 .laundry-container {

@@ -1,4 +1,7 @@
+import { checkoutStore } from "~/stores/checkoutStore";
+
 export default function () {
+  const store = checkoutStore()
   const config = useRuntimeConfig();
   const { $axios } = useNuxtApp();
   const axiosHeaders = {
@@ -6,6 +9,8 @@ export default function () {
       Authorization: `Bearer ${localStorage.getItem("userToken")}`,
     },
   };
+  const checkoutReadyServices = store.getServices
+  const totalAmount = store.getTotalAmount
   const drawer = ref(false);
   const address = ref("Select your address");
   const radio = ref([
@@ -102,5 +107,7 @@ export default function () {
     disableDates,
     fetchItemList,
     items,
-  };
+    checkoutReadyServices,
+    totalAmount
+  }
 }

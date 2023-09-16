@@ -20,6 +20,7 @@
     <el-button
       type="primary"
       :disabled="!totalAmount"
+      @click="toogleCheckout"
       style="
         width: 100%;
         padding: 8px 12px;
@@ -33,7 +34,10 @@
 <script setup>
 import LaundryCard from "~/components/LaundryCard.vue";
 import useCheckout from "~/composables/useCheckout";
+import {checkoutStore} from "~/stores/checkoutStore"
 
+const emits = defineEmits(['setCheckoutReady'])
+const store = checkoutStore()
 const { fetchItemList, items } = useCheckout();
 const order = ref([])
 const totalAmount = ref(0)
@@ -51,8 +55,15 @@ const calculateTotal = (item) => {
   replaceObjectById({
     service_id: item.item.id,
     quantity: item.quantity,
-    price: item.item.price
+    price: item.item.price,
+    service_name: item.item.name
   })
+}
+
+const toogleCheckout = () => {
+  store.setServices(order.value)
+  store.setTotalAmount(totalAmount.value)
+  emits('setCheckoutReady')
 }
 
 onMounted(async () => {
