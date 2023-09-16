@@ -1,20 +1,21 @@
 <template>
   <div class="loading-container">
-    <div class="loading-spinner">
-      <img src="../assets/images/loading.gif" alt="loading-icon">
-      <p>AH-KUU</p>
+    <div class="loading-spinner splash-container">
+       <!-- <img src="../assets/images/loading.gif" alt="loading-icon"> -->
+      <img src="/images/Ah-Kuu.svg" alt="" />
+      <!-- <p>AH-KUU</p> -->
     </div>
   </div>
 </template>
 
 <script setup>
-import useLogin from "~/composables/useLogin"
+import useLogin from "~/composables/useLogin";
 
-const {login} = useLogin()
+const { login } = useLogin();
 
 onMounted(() => {
-  login()
-})
+  login();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -34,6 +35,11 @@ onMounted(() => {
       font-weight: bold;
       font-size: 20px;
     }
+  }
+  .splash-container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
   }
 }
 </style>
