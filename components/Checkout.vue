@@ -34,10 +34,10 @@
     /> -->
     <el-divider class="divider-one" />
     <el-text class="checkout-text">Address</el-text>
-    <el-button class="addr-btn" @click="toggleDrawer"
+    <div class="addr-btn" @click="toggleDrawer"
       ><el-text>{{ address }}</el-text>
       <el-icon class="el-icon--right"><ArrowDownBold /></el-icon
-    ></el-button>
+    ></div>
     <el-divider />
     <!-- <div
       class="ep-bg-purple-dark"
@@ -214,6 +214,8 @@ onMounted(async () => {
 .addr-btn {
   padding: 20px 12px;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
 }
 .datetime-input {
   width: 100% !important;
@@ -247,10 +249,6 @@ onMounted(async () => {
   font-size: 16px;
   color: #212121;
   font-weight: 500;
-}
-.addr-btn {
-  width: 100%;
-  border: none;
 }
 .addr-btn > span {
   display: inline-flex;

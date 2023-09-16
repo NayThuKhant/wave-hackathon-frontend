@@ -26,7 +26,7 @@ const goBack = () => {
   max-width: 480px; /* Set the maximum width */
   margin: 0 auto; /* Center the navbar horizontally */
   background: #fff;
-  /* box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.10); */
+  box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.10);
 }
 .el-page-header__title {
   display: none;
