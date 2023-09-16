@@ -1,5 +1,5 @@
 <template>
-  <TopHeader :to="'history'" :header="'Order Detail'"/>
+  <TopHeader :to="'/history'" :header="'Order Detail'"/>
 
   <div class="service-provider-detail" v-if="orderDetail?.contact">
     <p class="header">Service Provider Detail</p>
