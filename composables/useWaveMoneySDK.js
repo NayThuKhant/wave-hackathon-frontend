@@ -82,20 +82,17 @@ export default function () {
     }
 
     const getWaveUserLocation = async () => {
-        // REMOVE
-        alert("TEST");
         await ensureWaveUserIsLoggedIn()
-        alert("LOGGED IN");
         //const response = await window.WaveJsSDK.locationModule?.getCurrentPosition()
         await window.WaveJsSDK.locationModule?.getCurrentPosition().then((response) => {alert("success"); alert(JSON.stringify(response));}).catch((error) => {alert(JSON.stringify(error));});
-        // REMOVE
-        alert(response);
-        const data = response?.response.data
+
+        // TODO Integrate this with actual data from wave money sdk
+        /*const data = response?.response.data
 
         if (data) {
             // TODO - Interpret the lat lang value to address using google map api or something else, and return it properly
             // TODO - can't do it right now since it's paid version
-        }
+        }*/
 
         // TODO default value for testing without wave money sdk
         return {
