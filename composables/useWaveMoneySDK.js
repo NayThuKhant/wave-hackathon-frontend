@@ -67,6 +67,7 @@ export default function () {
 
         }
         const orderId = (Math.random() + 1).toString(36).substring(2);
+        alert(orderId);
 
         await ensureWaveUserIsLoggedIn()
         const response = await window.WaveJsSDK.paymentModule?.makePayment(amount, receiverMsisdn, orderId)
