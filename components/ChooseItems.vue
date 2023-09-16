@@ -38,7 +38,7 @@ import {checkoutStore} from "~/stores/checkoutStore"
 
 const emits = defineEmits(['setCheckoutReady'])
 const store = checkoutStore()
-const { fetchItemList, items } = useCheckout();
+const { fetchItemList, items, fetchAddressList } = useCheckout();
 const order = ref([])
 const totalAmount = ref(0)
 const replaceObjectById = (newObject) => {
@@ -68,6 +68,7 @@ const toogleCheckout = () => {
 
 onMounted(async () => {
   await fetchItemList();
+  await fetchAddressList()
 });
 </script>
 <style>

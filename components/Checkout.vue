@@ -9,6 +9,7 @@
             placeholder="Pick a date"
             class="datetime-input"
             :disabled-date="disableDates"
+            value-format="YYYY-MM-DD"
           />
         </el-form-item>
         <el-form-item label="Start Time" style="display: block">
@@ -17,6 +18,7 @@
             placeholder="Pick time slot"
             class="datetime-input"
             :disabled-hours="disabledHours"
+            value-format="HH:mm:ss"
           />
         </el-form-item>
       </el-form>
@@ -62,6 +64,7 @@
       <el-text class="checkout-text">MMK {{ totalAmount }}</el-text>
     </div>
     <el-button
+      @click="startBooking"
       type="primary"
       style="
         width: 100%;
@@ -86,46 +89,81 @@
     <div>
       <el-text class="bottom-sheet-header">Choose address</el-text>
     </div>
+    <div @click="setCurrentLocation" class="location-pin-conatiner">
+      <img src="/images/map-pin.svg" alt="map-pin">
+      <p>Use Current Location</p>
+    </div>
     <el-radio-group v-model="selectedRadio" class="radio-card">
       <el-radio
-        v-for="item in radio"
-        :label="item.value"
-        :key="item.value"
+        v-for="address in addresses"
+        :label="address.id"
+        :key="address.id"
         size="large"
         class="radio-label"
         border
       >
-        <el-text>{{ item.label }}</el-text>
+        <el-text>{{ address.full_address }}</el-text>
         <el-icon><EditPen /></el-icon>
       </el-radio>
     </el-radio-group>
-    <el-button
-      type="primary"
-      style="width: 100%; padding: 12px; border-radius: 8px; margin: 0"
-      >Add New Address
-    </el-button>
+<!--    <el-button-->
+<!--      type="primary"-->
+<!--      style="width: 100%; padding: 12px; border-radius: 8px; margin: 0"-->
+<!--      >Add New Address-->
+<!--    </el-button>-->
   </el-drawer>
 </template>
 <script setup lang="ts">
 import { ArrowDownBold, EditPen } from "@element-plus/icons-vue";
 import useCheckout from "~/composables/useCheckout";
+import useWaveMoneySDK from "~/composables/useWaveMoneySDK";
+import {isInteger} from "lodash-es";
 
+const { getWaveUserLocation } = useWaveMoneySDK()
+const realAddress = ref()
 const {
   toggleDrawer,
   drawer,
-  radio,
   address,
   selectedRadio,
   dateForm,
   disableDates,
   checkoutReadyServices,
-  totalAmount
+  totalAmount,
+  addresses,
+  fetchAddressList,
+  checkout
 } = useCheckout();
 
+const startBooking = async () => {
+  let data = {
+    started_at: dateForm.value.date + ' ' + dateForm.value.time,
+    category_id: 1,
+    address_id: null,
+    address: null,
+    services: checkoutReadyServices
+  }
+
+  if (isInteger(realAddress.value)) {
+    data.address_id= realAddress.value
+  } else {
+    data.address = realAddress.value
+  }
+  await checkout(data)
+}
+
+const setCurrentLocation = async () => {
+  let add = await getWaveUserLocation()
+  address.value = "Dulwich, Pun Hlaing Estate Avenue"
+  realAddress.value = add
+  toggleDrawer()
+}
+
 watch(selectedRadio, (newValue) => {
-  const selectedRadioItem = radio.value.find((item) => item.value === newValue);
+  const selectedRadioItem = addresses.value.find((item) => item.id === newValue);
   if (selectedRadioItem) {
-    address.value = selectedRadioItem.label;
+    address.value = selectedRadioItem.full_address;
+    realAddress.value = selectedRadioItem.id
   }
   toggleDrawer();
 });
@@ -139,8 +177,12 @@ const makeRange = (start: number, end: number) => {
 const disabledHours = () => {
   return makeRange(0, 8).concat(makeRange(19, 23));
 };
+
+onMounted(async () => {
+  await fetchAddressList()
+});
 </script>
-<style>
+<style lang="scss">
 .checkout-content {
   flex: 1;
 }
@@ -216,7 +258,9 @@ const disabledHours = () => {
   display: block;
   font-weight: 600;
   text-align: center;
-  color: black;
+  color: #212121;
+  font-style: normal;
+  line-height: 150%; /* 24px */
 }
 .bottom-sheet {
   max-width: 440px;
@@ -242,6 +286,17 @@ const disabledHours = () => {
   border-top: 4px solid #787878;
   width: 100px;
   margin: 0 auto 10px;
+}
+.location-pin-conatiner {
+  display: flex;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 0.5px solid #CCC;
+  margin-bottom: 9px;
+
+  p {
+    margin: 0 5px;
+  }
 }
 .radio-card {
   display: flex-start;

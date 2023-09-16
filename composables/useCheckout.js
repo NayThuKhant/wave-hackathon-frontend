@@ -12,21 +12,8 @@ export default function () {
   const checkoutReadyServices = store.getServices
   const totalAmount = store.getTotalAmount
   const drawer = ref(false);
-  const address = ref("Select your address");
-  const radio = ref([
-    {
-      value: "Option1",
-      label: "Use Current Location",
-    },
-    {
-      value: "Option2",
-      label: "No (24), 40th Street, Botahtaung, Yangon",
-    },
-    {
-      value: "Option3",
-      label: "No (24), 49 Street, Botahtaung Township, Yangon",
-    },
-  ]);
+  const address = ref('Choose Address');
+  const addresses = ref()
   const toggleDrawer = () => {
     drawer.value = !drawer.value;
   };
@@ -94,20 +81,36 @@ export default function () {
         setItemsData(response);
       });
   };
+  const fetchAddressList = async () => {
+    await $axios.get(`${config.public.backendApi}/addresses`, axiosHeaders)
+        .then((response) => {
+          addresses.value = response.data.data
+        })
+  }
+
+  const checkout = async (data) => {
+    await $axios.post(`${config.public.backendApi}/orders`, data, axiosHeaders)
+      .then((response) => {
+        console.log('success pr tl')
+      })
+  }
+
   return {
     toggleDrawer,
     drawer,
     townships,
     cities,
     form,
-    radio,
     address,
     selectedRadio,
     dateForm,
     disableDates,
     fetchItemList,
+    fetchAddressList,
     items,
     checkoutReadyServices,
-    totalAmount
+    totalAmount,
+    addresses,
+    checkout
   }
 }
