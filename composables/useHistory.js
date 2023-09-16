@@ -19,11 +19,11 @@ export default function () {
     }
 
     const handleClick = (tab, event) => {
-        console.log(tab, event)
+        // console.log(tab, event)
     }
 
     const formatDate = (date) => {
-        const options = { year: "numeric", month: "short", day: "numeric" };
+        const options = { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric" };
         return new Date(date).toLocaleDateString("en-US", options);
     };
 

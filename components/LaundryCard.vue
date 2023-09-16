@@ -2,8 +2,8 @@
   <div class="laundry-card" shadow="hover">
     <div style="display: flex; align-items: center">
       <div>
-        <span class="item-name">{{ Item.name }}</span>
-        <el-text style="font-size: 12px">MMK {{ Item.price }}</el-text>
+        <span class="item-name">{{ item.name }}</span>
+        <el-text style="font-size: 12px">MMK {{ item.price }}</el-text>
       </div>
     </div>
     <el-input-number
@@ -19,18 +19,14 @@
 <script setup>
 const emits = defineEmits(["updateTotal"]);
 
-const props = defineProps({
-  Item: {
-    type: Object,
-    required: true,
-  },
-});
+const props = defineProps(['data'])
 const num = ref(0);
+const item = props.data
 const handleChange = () => {
   // Emit the updated quantity and price
   emits("updateTotal", {
     quantity: num.value,
-    price: Item.price,
+    item: item
   });
 };
 </script>

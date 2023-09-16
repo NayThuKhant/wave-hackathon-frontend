@@ -7,8 +7,8 @@
         <div style="font-size: 14px;">{{ props.order.status }}</div>
       </div>
       <div class="history-card-block">
-        <div>{{ totalPrice }}</div>
-        <div>date</div>
+        <div class="prize">{{ totalPrice }}</div>
+        <div class="start-time">{{ formatDate(props.order.started_at) }}</div>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
 <script setup>
 import {Right} from "@element-plus/icons-vue";
 
-const {determineImage} = useHistory()
+const {determineImage, formatDate} = useHistory()
 
 const props = defineProps({
   order: {
@@ -56,6 +56,22 @@ const totalPrice = computed(() => new Intl.NumberFormat('en-US', {
   flex-direction: column;
   gap: 14px;
   justify-content: space-between;
+
+  .prize {
+    color: var(--grayscale-gray-900, #212121);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 24px */
+  }
+  .start-time {
+    color: var(--grayscale-gray-500, #787878);
+    text-align: right;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 18px */
+  }
 }
 
 .history-row {

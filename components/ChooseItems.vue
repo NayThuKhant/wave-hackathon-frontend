@@ -7,18 +7,19 @@
       <el-text class="note-text"
         >Note:Cost for this service is charged per item</el-text
       >
-      <div v-for="item in items">
-        <LaundryCard :Item="item"></LaundryCard>
+      <div v-for="item in items" :key="item.id">
+        <LaundryCard @updateTotal="calculateTotal" :data="item"></LaundryCard>
       </div>
     </div>
   </div>
   <div class="total-foo">
     <div class="text-flex">
       <el-text class="total-text">Total</el-text>
-      <el-text class="total-text">MMK 0</el-text>
+      <el-text class="total-text">MMK {{ totalAmount }}</el-text>
     </div>
     <el-button
       type="primary"
+      :disabled="!totalAmount"
       style="
         width: 100%;
         padding: 8px 12px;
@@ -34,8 +35,26 @@ import LaundryCard from "~/components/LaundryCard.vue";
 import useCheckout from "~/composables/useCheckout";
 
 const { fetchItemList, items } = useCheckout();
-const laundryItems = items.value;
-console.log(items);
+const order = ref([])
+const totalAmount = ref(0)
+const replaceObjectById = (newObject) => {
+  let currentData = order.value.find(obj => obj.service_id === newObject.service_id)
+  if(currentData !== undefined) {
+    order.value = order.value.filter(obj => obj.service_id !== currentData.service_id)
+  }
+  order.value.push(newObject)
+  order.value = order.value.filter(obj => obj.quantity > 0)
+
+  totalAmount.value = order.value.reduce((acc, obj) => acc + (obj.price * obj.quantity), 0);
+}
+const calculateTotal = (item) => {
+  replaceObjectById({
+    service_id: item.item.id,
+    quantity: item.quantity,
+    price: item.item.price
+  })
+}
+
 onMounted(async () => {
   await fetchItemList();
 });
