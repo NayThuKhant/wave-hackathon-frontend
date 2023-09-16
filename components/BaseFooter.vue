@@ -4,22 +4,15 @@
     <div class="navbar">
       <div class="navbar-item" @click="brSharLal('home')">
         <el-image :src="isActive('home')" alt="home-icon"></el-image>
-<!--        <img alt="home-icon" :src="isActive('home')" />-->
-        <p>Home</p>
+        <p class="description">Home</p>
       </div>
       <div class="navbar-item" @click="brSharLal('history')">
-<!--        <el-icon :color="activeTab === 'history' ? 'blue': 'gray'">-->
-<!--          <List />-->
-<!--        </el-icon>-->
-        <img alt="home-icon" :src="isActive('history')" />
-        <p>Orders</p>
+        <img alt="home-icon" :src="isActive('history')"/>
+        <p class="description">Orders</p>
       </div>
       <div class="navbar-item" @click="brSharLal('profile')">
-<!--        <el-icon :color="activeTab === 'profile' ? 'blue': 'gray'">-->
-<!--          <User />-->
-<!--        </el-icon>-->
-        <img alt="home-icon" :src="isActive('profile')" />
-        <p>Profile</p>
+        <img alt="home-icon" :src="isActive('profile')"/>
+        <p class="description">Profile</p>
       </div>
     </div>
   </div>
@@ -40,6 +33,10 @@ const isActive = (name) => {
 </script>
 
 <style scoped lang="scss">
+.description {
+  font-size: 10px;
+}
+
 /* Styling for the floating navigation bar */
 .footer-bar {
   z-index: 1000;
@@ -65,6 +62,7 @@ const isActive = (name) => {
   cursor: pointer;
   margin: 0;
   padding: 0;
+
   p {
     margin: 0;
   }
