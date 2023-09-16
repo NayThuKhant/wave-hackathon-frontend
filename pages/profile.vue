@@ -1,31 +1,33 @@
 <template>
   <div class="profile-container">
-    <div style="display: flex;">
+    <div style="display: flex">
       <p class="profile-header">Profile</p>
-      <WaveCloseButton/>
+      <WaveCloseButton />
     </div>
     <div class="profile-card" style="display: flex; align-items: center">
       <el-avatar class="card-user">
-        <ElIconUser/>
+        <ElIconUser />
       </el-avatar>
       <div style="margin-left: 20px">
         <span
-            style="
+          style="
             display: block;
             margin-bottom: 5px;
             font-size: 14px;
             font-weight: 600;
           "
-        >{{ userProfile.name }}</span
+          >{{ userProfile.name }}</span
         >
-        <el-text style="font-size: 12px">{{ userProfile.mobile_number }}</el-text>
+        <el-text style="font-size: 12px">{{
+          userProfile.mobile_number
+        }}</el-text>
       </div>
     </div>
 
     <!-- User Information -->
     <div class="profile-card">
       <el-text
-          style="
+        style="
           font-size: 16px;
           margin-bottom: 10px;
           display: block;
@@ -33,84 +35,110 @@
           text-align: left;
           color: black;
         "
-      >Settings
-      </el-text
-      >
+        >Settings
+      </el-text>
 
       <div class="setting" @click="startWorking">
-        <el-text class="des-title"
-        >
-          <el-icon class="setting-icon"
-          >
-            <el-image src="/images/briefcase.svg"/>
-          </el-icon
-          >
+        <el-text class="des-title">
+          <el-icon class="setting-icon">
+            <el-image src="/images/briefcase.svg" />
+          </el-icon>
           Employee Profile
-        </el-text
+        </el-text>
+        <el-tag
+          v-if="isActive"
+          :type="'success'"
+          class="mx-1"
+          effect="dark"
+          round
         >
-        <el-tag v-if="isActive" :type="'success'" class="mx-1" effect="dark" round>
           ACTIVATED
         </el-tag>
-        <el-link v-else :underline="false" style="
+        <el-link
+          v-else
+          :underline="false"
+          style="
             font-size: 14px;
             font-weight: 500;
             text-align: right;
             color: #3188e1;
-          ">
+          "
+        >
           JOIN
-        </el-link
-        >
+        </el-link>
       </div>
       <div class="setting">
-        <el-text class="des-title"
-        >
-          <el-icon class="setting-icon"
-          >
-            <el-image src="/images/terms.svg"/>
-          </el-icon
-          >
+        <el-text class="des-title">
+          <el-icon class="setting-icon">
+            <el-image src="/images/terms.svg" />
+          </el-icon>
           Terms & Conditions
-        </el-text
-        >
+        </el-text>
         <el-icon>
-          <arrow-right-bold/>
+          <arrow-right-bold />
         </el-icon>
       </div>
       <div class="setting">
-        <el-text class="des-title"
-        >
-          <el-icon class="setting-icon"
-          >
-            <el-image src="/images/faqs.svg"/>
-          </el-icon
-          >
+        <el-text class="des-title">
+          <el-icon class="setting-icon">
+            <el-image src="/images/faqs.svg" />
+          </el-icon>
           FAQs
-        </el-text
-        >
+        </el-text>
         <el-icon>
-          <arrow-right-bold/>
+          <arrow-right-bold />
         </el-icon>
       </div>
       <div class="setting">
-        <el-text class="des-title" style="flex: 1"
-        >
-          <el-icon class="setting-icon"
-          >
-            <el-image src="/images/globe.svg"
-            />
+        <el-text class="des-title" style="flex: 1">
+          <el-icon class="setting-icon">
+            <el-image src="/images/globe.svg" />
           </el-icon>
           Languages
-        </el-text
-        >
+        </el-text>
         <el-link
-            :underline="false"
-            style="font-size: 14px; font-weight: 500; text-align: right"
-        >English
-        </el-link
-        >
+          :underline="false"
+          style="font-size: 14px; font-weight: 500; text-align: right"
+          >English
+        </el-link>
         <el-icon style="margin-left: 5px">
-          <arrow-right-bold/>
+          <arrow-right-bold />
         </el-icon>
+      </div>
+    </div>
+    <div class="device-card">
+      <el-text
+        style="
+          font-size: 16px;
+          margin-bottom: 16px;
+          display: block;
+          font-weight: 600;
+          text-align: left;
+          color: black;
+        "
+        >Active Device
+      </el-text>
+      <div
+        style="display: flex; justify-content: flex-start; align-items: center"
+      >
+        <el-icon style="margin-right: 16px; font-size: 24px"
+          ><Iphone
+        /></el-icon>
+        <div>
+          <span
+            style="
+              display: block;
+              font-size: 14px;
+              font-weight: bold;
+              color: var(--grayscale-gray-900, #212121);
+            "
+          >
+            {{ device }}
+          </span>
+          <el-text style="padding-right: 5px; font-size: 10px">
+            Yangon, Myanmar
+          </el-text>
+        </div>
       </div>
     </div>
   </div>
@@ -119,18 +147,16 @@
 
 <script setup>
 import useProfile from "~/composables/useProfile";
-import {ArrowRightBold} from "@element-plus/icons-vue";
-import useWaveMoneySDK from "~/composables/useWaveMoneySDK"
+import { ArrowRightBold, Iphone } from "@element-plus/icons-vue";
+import useWaveMoneySDK from "~/composables/useWaveMoneySDK";
 
-const {userProfile, startWorking, isActive} = useProfile()
+const { userProfile, startWorking, isActive } = useProfile();
 const device = ref("");
 
 onMounted(async () => {
-  const deviceFromSDK = await useWaveMoneySDK().getWaveUserDevice()
-  device.value = deviceFromSDK.brand + " " + deviceFromSDK.model
-})
-
-
+  const deviceFromSDK = await useWaveMoneySDK().getWaveUserDevice();
+  device.value = deviceFromSDK.brand + " " + deviceFromSDK.model;
+});
 </script>
 <style lang="scss">
 .profile-container {
@@ -142,17 +168,12 @@ onMounted(async () => {
   }
 }
 
-.device-block {
-  display: flex;
-  align-items: center;
-}
-
-.device {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  gap: 5px;
+.device-card {
+  border-radius: 8px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
 }
 
 .profile-card {
