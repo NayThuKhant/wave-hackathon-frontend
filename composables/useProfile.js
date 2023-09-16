@@ -36,5 +36,5 @@ export default function () {
             })
     }
 
-    return {userProfile, startWorking, isActive, subscribeCategories, subscribedCategories}
+    return {userProfile, startWorking, isActive, subscribeCategories, subscribedCategories, fetchMe}
 }

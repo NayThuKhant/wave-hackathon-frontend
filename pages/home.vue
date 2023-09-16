@@ -7,17 +7,16 @@
           <!-- <el-image class="header-image" src="/images/ourlogo.png"></el-image> -->
           <p
             style="
-              color: var(--grayscale-gray-50, #fff);
+              color: #fff;
               font-size: 12px;
               font-style: normal;
               font-weight: 600;
-              line-height: 150%; /* 18px */
               margin: 0;
             "
           >
             Welcome,
           </p>
-          <p class="user-name">{{ user.name }}</p>
+          <p class="user-name">{{ userProfile.name }}</p>
         </div>
         <div>
           <el-image
@@ -35,11 +34,11 @@
           </div>
           <el-image src="/images/WaveMoneyLogoV2.svg"></el-image>
         </div>
-        <div v-if="user.employee">
+        <div v-if="userProfile.employee">
           <el-divider style="margin: 0 auto"></el-divider>
           <div>
             <p class="balance-title" style="margin-top: 5px">OnHold Balance</p>
-            <p class="balance-data">MMK {{ user.on_hold_balance }}</p>
+            <p class="balance-data">MMK {{ userProfile.on_hold_balance }}</p>
           </div>
         </div>
       </div>
@@ -116,11 +115,15 @@
 import { EditPen } from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
 import useProvider from "~/composables/useProvider";
+import useProfile from "~/composables/useProfile";
 import useWaveMoneySDK from "~/composables/useWaveMoneySDK";
-import SamplePayment from "~/components/SamplePayment.vue";
+
 
 const balance = ref();
 const { providers, fetchProviders } = useProvider();
+const { user, drawer, goToProviders } = useHome();
+const {userProfile, fetchMe} = useProfile()
+
 
 onMounted(async () => {
   const value = await useWaveMoneySDK().getWaveUserWalletBalance();
@@ -129,12 +132,14 @@ onMounted(async () => {
     currency: "MMK",
   }).format(value);
 
+  await fetchMe();
+
   await fetchProviders();
 });
 
-const { user, drawer, goToProviders } = useHome();
+
 const dynamicHeight = computed(() => {
-  if (user.employee) {
+  if (userProfile.employee) {
     return "70px";
   } else {
     return "85px";
@@ -142,7 +147,7 @@ const dynamicHeight = computed(() => {
 });
 
 const dynamicMargin = computed(() => {
-  if (user.employee) {
+  if (userProfile.employee) {
     return "115px 20px 70px 20px";
   } else {
     return "50px 20px 70px 20px";
