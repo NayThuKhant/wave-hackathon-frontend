@@ -11,6 +11,8 @@
         <LaundryCard @updateTotal="calculateTotal" :data="item"></LaundryCard>
       </div>
     </div>
+    <p v-if="employee">Service Offered To:</p>
+    <BtnCard v-if="employee" :Employee="employee" />
   </div>
   <div class="total-foo">
     <div class="text-flex">
@@ -38,12 +40,14 @@ import {checkoutStore} from "~/stores/checkoutStore"
 
 const emits = defineEmits(['setCheckoutReady'])
 const store = checkoutStore()
-const { fetchItemList, items } = useCheckout();
+const { fetchItemList, items, getEmployee } = useCheckout();
 const order = ref([])
 const totalAmount = ref(0)
 const route = useRoute()
+const employee = ref()
 
 const categoryType = route.query.category
+const employeeId = route.query.employee_id
 const replaceObjectById = (newObject) => {
   let currentData = order.value.find(obj => obj.service_id === newObject.service_id)
   if(currentData !== undefined) {
@@ -71,6 +75,9 @@ const toogleCheckout = () => {
 
 onMounted(async () => {
   await fetchItemList(route.query.category);
+  if(route.query.employee_id) {
+    employee.value = await getEmployee(route.query.employee_id)
+  }
 });
 </script>
 <style>

@@ -1,5 +1,5 @@
 <template>
-  <el-card class="card-container" shadow="hover">
+  <el-card @click="gotoOrder" class="card-container" shadow="hover">
     <el-avatar :src="determineAvatar(Employee.gender)" class="card-user" />
     <div style="margin-left: 16px">
       <span style="display: block; font-size: 13px; font-weight: bold">{{ Employee.name }}</span>
@@ -30,6 +30,10 @@ const props = defineProps({
   },
 })
 
+const gotoOrder = () => {
+  navigateTo(`order?category=1&employee_id=${props.Employee.id}`)
+}
+
 const determineAvatar = (gender) => {
   return gender.toLowerCase() == 'male' ? '/images/male-avatar.png' : '/images/female-avatar.png';
 }
@@ -40,6 +44,7 @@ const determineAvatar = (gender) => {
   width: 100%;
   border-radius: 6px;
   margin: 5px 0;
+  cursor: pointer;
 }
 .card-container .el-card__body {
   display: flex;

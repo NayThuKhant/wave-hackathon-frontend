@@ -95,6 +95,14 @@ export default function () {
       })
   }
 
+  const getEmployee = async (id) => {
+    return $axios.get(`${config.public.backendApi}/employees/${id}`, axiosHeaders)
+        .then((response) => {
+          return response.data.data
+        })
+  }
+
+
   return {
     toggleDrawer,
     drawer,
@@ -111,6 +119,7 @@ export default function () {
     checkoutReadyServices,
     totalAmount,
     addresses,
-    checkout
+    checkout,
+    getEmployee
   }
 }
