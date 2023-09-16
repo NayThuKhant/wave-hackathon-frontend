@@ -31,7 +31,7 @@ const props = defineProps({
 })
 
 const determineAvatar = (gender) => {
-  return gender == 'MALE' ? '/images/male-avatar.png' : '/images/female-avatar.png';
+  return gender.toLowerCase() == 'male' ? '/images/male-avatar.png' : '/images/female-avatar.png';
 }
 </script>
 

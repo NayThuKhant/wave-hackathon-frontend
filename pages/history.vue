@@ -10,6 +10,7 @@
          <HistoryCard
               v-for="order in offers"
               :order="order"
+              :key="order.id"
           />
         </template>
         <el-empty v-else image="/images/empty.svg" description="There is nothing to show yet !" />
@@ -19,6 +20,7 @@
           <HistoryCard
               v-for="order in services"
               :order="order"
+              :key="order.id"
           />
         </template>
         <el-empty v-else image="/images/empty.svg" description="There is nothing to show yet !" >
