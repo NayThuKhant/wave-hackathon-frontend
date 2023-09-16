@@ -35,15 +35,14 @@
         z-index: 999;
         position: fixed;
         bottom: 90px;
-        width: 100%;
         max-width: 440px;
         padding: 20px 5px;
         border-radius: 8px;
         background: #fff;
-        box-shadow: 4px -4px 12px 0px rgba(0, 0, 0, 0.1),
-          -4px 4px 12px 0px rgba(0, 0, 0, 0.15);
+        box-shadow: 4px -4px 12px 0 rgba(0, 0, 0, 0.1),
+          -4px 4px 12px 0 rgba(0, 0, 0, 0.15);
         color: #153051;
-        width: 95%;
+        width: 100%;
         right: 50%;
         transform: translate(50%);
       "
