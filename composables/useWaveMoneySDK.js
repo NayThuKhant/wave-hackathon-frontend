@@ -67,6 +67,7 @@ export default function () {
 
         }
         const orderId = (Math.random() + 1).toString(36).substring(2);
+        // TODO remove this
         alert(orderId);
 
         await ensureWaveUserIsLoggedIn()
