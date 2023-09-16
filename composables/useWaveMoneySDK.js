@@ -58,32 +58,26 @@ export default function () {
         return response?.response.data
     }
 
-    const makePayment = async (amount, receiverMsisdn, orderId) => {
+    const makePayment = async (amount, receiverMsisdn) => {
 
         // TODO default value for testing without wave money sdk
-        if (amount && receiverMsisdn && orderId) {
+        if (!amount && !receiverMsisdn && !orderId) {
             amount = 1000
             receiverMsisdn = '9784489866'
-            orderId = 1
-        }
 
-        alert("payload prepared");
+        }
+        const orderId = (Math.random() + 1).toString(36).substring(2);
 
         await ensureWaveUserIsLoggedIn()
-        alert("user logged in")
-        const response = await window.WaveJsSDK.paymentModule?.makePayment(1000, "9784489866", "xydafsdfd")
-        alert(JSON.stringify(response))
+        const response = await window.WaveJsSDK.paymentModule?.makePayment(amount, receiverMsisdn, orderId)
         const data = response?.response.data
-
-        alert("passed here");
 
         if (data) return data
 
-        alert(JSON.stringify(data))
-
+        // TODO default value for testing without wave money sdk
         return {
             "transactionId": "123456789",
-            "transactionDate": "2021-09-01",
+            "transactionDate": "2021-09-01 18:23",
         }
     }
 
