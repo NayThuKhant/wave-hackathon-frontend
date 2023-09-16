@@ -1,6 +1,6 @@
 <template>
   <el-card class="card-container" shadow="hover">
-    <el-avatar class="card-user"><User /></el-avatar>
+    <el-avatar :src="determineAvatar(Employee.gender)" class="card-user" />
     <div style="margin-left: 16px">
       <span style="display: block; font-size: 13px; font-weight: bold">{{ Employee.name }}</span>
       <el-text
@@ -28,7 +28,11 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-});
+})
+
+const determineAvatar = (gender) => {
+  return gender == 'MALE' ? '/images/male-avatar.png' : '/images/female-avatar.png';
+}
 </script>
 
 <style lang="scss">
