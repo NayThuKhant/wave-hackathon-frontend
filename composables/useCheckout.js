@@ -91,7 +91,7 @@ export default function () {
   const checkout = async (data) => {
     await $axios.post(`${config.public.backendApi}/orders`, data, axiosHeaders)
       .then((response) => {
-        console.log('success pr tl')
+        // console.log('success pr tl')
       })
   }
 
