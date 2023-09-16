@@ -8,7 +8,6 @@
           <p
             style="
               color: var(--grayscale-gray-50, #fff);
-              font-family: Manrope;
               font-size: 12px;
               font-style: normal;
               font-weight: 600;
@@ -189,11 +188,9 @@ const dynamicMargin = computed(() => {
 .user-name {
   line-height: 150%; /* 18px */
   color: var(--grayscale-gray-50, #fff);
-  font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  line-height: 150%; /* 21px */
   margin: 5px 0;
 }
 
@@ -205,7 +202,6 @@ const dynamicMargin = computed(() => {
 }
 .balance-title {
   color: var(--grayscale-gray-500, #787878);
-  font-family: Manrope;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -214,7 +210,6 @@ const dynamicMargin = computed(() => {
 }
 .balance-data {
   color: var(--Light-Blue, #3188e1);
-  font-family: Manrope;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
