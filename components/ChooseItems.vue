@@ -5,7 +5,7 @@
         >Select item types that you want to include in the service</el-text
       >
       <el-text class="note-text"
-        >Note:Cost for this service is charged per item</el-text
+        >Note:Cost for this service is charged per {{ categoryType === "1" ? 'Hour': 'Item' }}</el-text
       >
       <div v-for="item in items" :key="item.id">
         <LaundryCard @updateTotal="calculateTotal" :data="item"></LaundryCard>
@@ -38,9 +38,12 @@ import {checkoutStore} from "~/stores/checkoutStore"
 
 const emits = defineEmits(['setCheckoutReady'])
 const store = checkoutStore()
-const { fetchItemList, items, fetchAddressList } = useCheckout();
+const { fetchItemList, items } = useCheckout();
 const order = ref([])
 const totalAmount = ref(0)
+const route = useRoute()
+
+const categoryType = route.query.category
 const replaceObjectById = (newObject) => {
   let currentData = order.value.find(obj => obj.service_id === newObject.service_id)
   if(currentData !== undefined) {
@@ -67,8 +70,7 @@ const toogleCheckout = () => {
 }
 
 onMounted(async () => {
-  await fetchItemList();
-  await fetchAddressList()
+  await fetchItemList(route.query.category);
 });
 </script>
 <style>

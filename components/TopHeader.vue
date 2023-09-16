@@ -2,13 +2,13 @@
   <div class="header-style">
     <el-page-header @back="goBack">
       <template #content>
-        <span class="text-large font-600 mr-2"> Laundry </span>
+        <span class="text-large font-600 mr-2"> {{ header }} </span>
       </template>
     </el-page-header>
   </div>
 </template>
 <script setup>
-const props = defineProps(["to"]);
+const props = defineProps(["to", "header"]);
 const goBack = () => {
   navigateTo(props.to);
 };

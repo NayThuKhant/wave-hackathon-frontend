@@ -1,5 +1,5 @@
 <template>
-  <TopHeader :to="'profile'"></TopHeader>
+  <TopHeader :to="'profile'" :header="'Choose Category'"></TopHeader>
   <div class="emp-profile-container">
     <div style="flex: 1">
 

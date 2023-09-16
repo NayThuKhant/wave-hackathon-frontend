@@ -1,5 +1,5 @@
 <template>
-  <TopHeader :to="'home'"></TopHeader>
+  <TopHeader :to="'home'" :header="'Providers'"></TopHeader>
   <div style="margin: 50px 20px 0 20px">
     <el-input
         v-model="search"

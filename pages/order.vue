@@ -1,8 +1,8 @@
 <template>
-  <TopHeader :to="'home'"></TopHeader>
+  <TopHeader :to="'home'" :header="'Order'"></TopHeader>
   <div class="laundry-container">
     <!-- use this if the user has not chosen any item -->
-    <ChooseItems 
+    <ChooseItems
       @setCheckoutReady="readyCheckoutToggle"
       v-if="!isReadyCheckout"
     ></ChooseItems>
@@ -11,6 +11,7 @@
   </div>
 </template>
 <script setup>
+const route = useRoute()
 const isReadyCheckout = ref(false)
 
 const readyCheckoutToggle = () => {

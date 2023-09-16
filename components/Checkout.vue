@@ -93,7 +93,7 @@
       <img src="/images/map-pin.svg" alt="map-pin">
       <p>Use Current Location</p>
     </div>
-    <el-radio-group v-model="selectedRadio" class="radio-card">
+    <el-radio-group v-if="addresses" v-model="selectedRadio" class="radio-card">
       <el-radio
         v-for="address in addresses"
         :label="address.id"
@@ -120,6 +120,7 @@ import useWaveMoneySDK from "~/composables/useWaveMoneySDK";
 import {isInteger} from "lodash-es";
 
 const { getWaveUserLocation } = useWaveMoneySDK()
+const route = useRoute()
 const realAddress = ref()
 const {
   toggleDrawer,
@@ -138,7 +139,7 @@ const {
 const startBooking = async () => {
   let data = {
     started_at: dateForm.value.date + ' ' + dateForm.value.time,
-    category_id: 1,
+    category_id: route.query.category,
     address_id: null,
     address: null,
     services: checkoutReadyServices

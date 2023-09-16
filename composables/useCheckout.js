@@ -74,9 +74,9 @@ export default function () {
   const setItemsData = async (response) => {
     items.value = response.data.data.services;
   };
-  const fetchItemList = async () => {
+  const fetchItemList = async (categoryId) => {
     await $axios
-      .get(`${config.public.backendApi}/categories/2`, axiosHeaders)
+      .get(`${config.public.backendApi}/categories/${categoryId}`, axiosHeaders)
       .then((response) => {
         setItemsData(response);
       });
