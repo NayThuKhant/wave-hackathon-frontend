@@ -62,13 +62,17 @@ export default function () {
 
         // TODO default value for testing without wave money sdk
         if (amount && receiverMsisdn && orderId) {
-            amount = 50
+            amount = 1000
             receiverMsisdn = '9784489866'
             orderId = 1
         }
 
+        alert("payload prepared");
+
         await ensureWaveUserIsLoggedIn()
-        const response = await window.WaveJsSDK.paymentModule?.makePayment({amount, receiverMsisdn, orderId})
+        alert("user logged in")
+        const response = await window.WaveJsSDK.paymentModule?.makePayment({amount: amount, receiverMsisdn: receiverMsisdn, orderId: orderId})
+        alert(JSON.stringify(response))
         const data = response?.response.data
 
         alert("passed here");
