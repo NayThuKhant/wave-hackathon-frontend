@@ -84,6 +84,7 @@ export default function () {
     const getWaveUserLocation = async () => {
         await ensureWaveUserIsLoggedIn()
         const response = await window.WaveJsSDK.locationModule?.getCurrentPosition()
+        alert(response);
         const data = response?.response.data
 
         if (data) {
