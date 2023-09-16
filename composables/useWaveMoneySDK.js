@@ -71,7 +71,11 @@ export default function () {
         const response = await window.WaveJsSDK.paymentModule?.makePayment({amount, receiverMsisdn, orderId})
         const data = response?.response.data
 
+        alert("passed here");
+
         if (data) return  data
+
+        alert(JSON.stringify(data))
 
         return {
             "transactionId": "123456789",
