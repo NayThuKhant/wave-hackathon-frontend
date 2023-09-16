@@ -64,26 +64,21 @@ export default function () {
         if (amount && receiverMsisdn && orderId) {
             amount = 1000
             receiverMsisdn = '9784489866'
-            orderId = 1
+            orderId = (Math.random() + 1).toString(36).substring(2);
         }
 
-        alert("payload prepared");
 
         await ensureWaveUserIsLoggedIn()
-        alert("user logged in")
-        const response = await window.WaveJsSDK.paymentModule?.makePayment(1000, "9784489866", "xydafsdfd")
+        const response = await window.WaveJsSDK.paymentModule?.makePayment(amount, receiverMsisdn, orderId)
         alert(JSON.stringify(response))
         const data = response?.response.data
 
-        alert("passed here");
-
         if (data) return data
 
-        alert(JSON.stringify(data))
-
+        // TODO default value for testing without wave money sdk
         return {
             "transactionId": "123456789",
-            "transactionDate": "2021-09-01",
+            "transactionDate": "2021-09-01 18:23",
         }
     }
 
