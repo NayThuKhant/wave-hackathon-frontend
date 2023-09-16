@@ -6,28 +6,34 @@
         <div style="flex: 1">
           <!-- <el-image class="header-image" src="/images/ourlogo.png"></el-image> -->
           <p
-            style="
+              style="
               color: #fff;
               font-size: 12px;
               font-style: normal;
-              font-weight: 600;
+              font-weight: 400;
               margin: 0;
             "
           >
             Welcome,
           </p>
-          <p class="user-name">{{ userProfile.name }}</p>
+          <p style="
+              color: #fff;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 600;
+              margin-top: 4px;
+            ">{{ userProfile.name }}</p>
         </div>
         <div>
           <el-image
-            @click="goToProviders"
-            src="/images/SearchProvidersIcon.svg"
+              @click="goToProviders"
+              src="/images/SearchProvidersIcon.svg"
           ></el-image>
-          <WaveCloseButton />
+          <WaveCloseButton/>
         </div>
       </div>
       <div class="wave-balance-box">
-        <div class="balance-box">
+        <div class="balance-box" style="padding: 4px 0">
           <div>
             <p class="balance-title">WavePay Balance</p>
             <p class="balance-data">{{ balance }}</p>
@@ -36,8 +42,8 @@
         </div>
         <div v-if="userProfile.employee">
           <el-divider style="margin: 0 auto"></el-divider>
-          <div>
-            <p class="balance-title" style="margin-top: 5px">OnHold Balance</p>
+          <div style="padding: 4px 0">
+            <p class="balance-title">OnHold Balance</p>
             <p class="balance-data">MMK {{ userProfile.on_hold_balance }}</p>
           </div>
         </div>
@@ -48,11 +54,11 @@
       <Carousel></Carousel>
       <Services :providers="providers"></Services>
       <el-alert
-        title="New Service Offer!"
-        type="success"
-        description="Checkout...You have got a new offer job!"
-        show-icon
-        style="
+          title="New Service Offer!"
+          type="success"
+          description="Checkout...You have got a new offer job!"
+          show-icon
+          style="
           z-index: 999;
           position: fixed;
           bottom: 90px;
@@ -69,50 +75,12 @@
         "
       />
     </div>
-    <el-drawer
-      v-model="drawer"
-      direction="btt"
-      class="bottom-sheet"
-      :with-header="false"
-    >
-      <el-divider
-        class="thick-line"
-        content-position="center"
-        :height="6"
-      ></el-divider>
-
-      <el-container class="radio-card">
-        <el-text class="address-text"
-          >No (24), 40th Street, Botahtaung, Yangon, Somewhere on the earth,
-          someone on the earth
-        </el-text>
-        <el-icon>
-          <edit-pen />
-        </el-icon>
-      </el-container>
-
-      <el-container class="radio-card">
-        <el-text class="address-text"
-          >No (24), 40th Street, Botahtaung, Yangon, Somewhere on the earth,
-          someone on the earth
-        </el-text>
-        <el-icon>
-          <edit-pen />
-        </el-icon>
-      </el-container>
-
-      <el-button
-        type="primary"
-        style="width: 100%; padding: 8px 12px; border-radius: 8px"
-        >Add New Address
-      </el-button>
-    </el-drawer>
   </div>
   <BaseFooter :active="'home'"></BaseFooter>
 </template>
 
 <script setup>
-import { EditPen } from "@element-plus/icons-vue";
+import {EditPen} from "@element-plus/icons-vue";
 import useHome from "~/composables/useHome";
 import useProvider from "~/composables/useProvider";
 import useProfile from "~/composables/useProfile";
@@ -120,8 +88,8 @@ import useWaveMoneySDK from "~/composables/useWaveMoneySDK";
 
 
 const balance = ref();
-const { providers, fetchProviders } = useProvider();
-const { user, drawer, goToProviders } = useHome();
+const {providers, fetchProviders} = useProvider();
+const {goToProviders} = useHome();
 const {userProfile, fetchMe} = useProfile()
 
 
@@ -133,6 +101,7 @@ onMounted(async () => {
   }).format(value);
 
   await fetchMe();
+  console.log(userProfile);
 
   await fetchProviders();
 });
@@ -140,9 +109,9 @@ onMounted(async () => {
 
 const dynamicHeight = computed(() => {
   if (userProfile.employee) {
-    return "70px";
+    return "90px";
   } else {
-    return "85px";
+    return "105px";
   }
 });
 
@@ -163,10 +132,12 @@ const dynamicMargin = computed(() => {
 .balance {
   font-weight: 900;
 }
+
 .top-header {
   background-color: #153051;
   padding: 12px 16px;
 }
+
 .header {
   display: flex;
   align-items: center;
@@ -185,11 +156,13 @@ const dynamicMargin = computed(() => {
   margin: 10px 0;
   padding: 12px 16px;
 }
+
 .balance-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .user-name {
   line-height: 150%; /* 18px */
   color: var(--grayscale-gray-50, #fff);
@@ -205,6 +178,7 @@ const dynamicMargin = computed(() => {
   font-style: normal;
   font-weight: 600;
 }
+
 .balance-title {
   color: var(--grayscale-gray-500, #787878);
   font-size: 12px;
@@ -213,6 +187,7 @@ const dynamicMargin = computed(() => {
   line-height: 150%; /* 18px */
   margin: 0;
 }
+
 .balance-data {
   color: var(--Light-Blue, #3188e1);
   font-size: 18px;
@@ -221,6 +196,7 @@ const dynamicMargin = computed(() => {
   line-height: 150%; /* 27px */
   margin: 0;
 }
+
 .header-image {
   margin-right: 16px;
   height: 48px;
