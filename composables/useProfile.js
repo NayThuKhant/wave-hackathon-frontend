@@ -13,14 +13,14 @@ export default function () {
     const userProfile = store.getUserData
     const isActive = ref(userProfile.employee ? true : false)
 
-    const fetchMe = async () => {
+    const fetchMe = () => {
         $axios.get(`${config.public.backendApi}/me`, axiosHeaders)
             .then((res) => {
                 store.setUserData(res.data.data)
                 isActive.value = true
             })
     }
-    const startWorking = () => {
+    const startWorking = async () => {
         $axios.post(`${config.public.backendApi}/start-working`, {}, axiosHeaders)
             .then((response) => {
                 fetchMe()
