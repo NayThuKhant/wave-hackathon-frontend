@@ -5,12 +5,11 @@
       <el-card
           class="service-card"
           shadow="hover"
-          style="background-color: #fce9ff"
-          @click="goToService('order?category=1')"
+          @click="goToService('order?category=2')"
       >
         <div style="display: flex; align-items: center">
-          <img src="@/assets/images/cleaning.svg"/>
-          <span style="margin-left: 10px; font-size: 14px">Household</span>
+          <img alt="" src="@/assets/images/laundry.svg"/>
+          <span style="margin-left: 10px; font-size: 14px">Laundry</span>
         </div>
         <el-icon class="service-icon">
           <ArrowRight/>
@@ -19,11 +18,12 @@
       <el-card
           class="service-card"
           shadow="hover"
-          @click="goToService('order?category=2')"
+          style="background-color: #fce9ff"
+          @click="goToService('order?category=1')"
       >
         <div style="display: flex; align-items: center">
-          <img alt="" src="@/assets/images/laundry.svg"/>
-          <span style="margin-left: 10px; font-size: 14px">Laundry</span>
+          <img src="@/assets/images/cleaning.svg"/>
+          <span style="margin-left: 10px; font-size: 14px">Household</span>
         </div>
         <el-icon class="service-icon">
           <ArrowRight/>

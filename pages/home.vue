@@ -101,8 +101,6 @@ onMounted(async () => {
   }).format(value);
 
   await fetchMe();
-  console.log(userProfile);
-
   await fetchProviders();
 });
 

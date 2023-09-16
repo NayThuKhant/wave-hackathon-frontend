@@ -1,5 +1,5 @@
 <template>
-  <TopHeader :to="'history'" :header="'Order Detail'" />
+  <TopHeader :to="'history'" :header="'Order Detail'"/>
 
   <div class="service-provider-detail" v-if="orderDetail?.contact">
     <p class="header">Service Provider Detail</p>
@@ -9,7 +9,7 @@
     <p class="title">Mobile No.</p>
     <p class="data">{{ orderDetail?.contact.country_code }} {{ orderDetail?.contact.mobile_number }}</p>
   </div>
-  <div style="height: 8px; background-color: #F2F2F2" />
+  <div style="height: 8px; background-color: #F2F2F2"/>
   <div class="service-date-time">
     <p class="header">Service Date & Time</p>
     <p class="title">Date</p>
@@ -17,14 +17,17 @@
 
     <p class="title">Start Time</p>
     <p class="data">{{ formatTime(orderDetail?.started_at) }}</p>
+
+    <p class="title">Status</p>
+    <p class="data">{{ orderDetail?.status }}</p>
   </div>
-  <div style="height: 8px; background-color: #F2F2F2" />
+  <div style="height: 8px; background-color: #F2F2F2"/>
   <div class="service-address">
     <p class="header">Address</p>
     <p class="title">Address</p>
     <p class="data">{{ orderDetail?.address }}</p>
   </div>
-  <div style="height: 8px; background-color: #F2F2F2" />
+  <div style="height: 8px; background-color: #F2F2F2"/>
   <div class="service-summary">
     <p class="header">Service Summary</p>
 
@@ -46,77 +49,121 @@
       <p class="bold-text">{{ service.pivot.quantity }} items</p>
     </div>
   </div>
-  <div style="height: 8px; background-color: #F2F2F2" />
+  <div style="height: 8px; background-color: #F2F2F2"/>
   <div class="balance-footer-box">
     <div class="balance-button">
       <p>Total</p>
       <p>{{ numberFormat(orderDetail?.total_price) }}</p>
     </div>
-    <el-button
-        type="primary"
-        style="
+
+    <el-button v-if="buttonText"
+               @click="goToBackend"
+               type="primary"
+               style="
         width: 70%;
         padding: 8px 12px;
         border-radius: 8px;
         background-color: #153051;
         margin-bottom: 10px;
       "
-    >Check Out
+    >{{ buttonText }}
     </el-button>
   </div>
 
   <el-dialog
+      v-if="status === 'ORDERED'"
+      v-model="visibleModel"
       :close-on-click-modal="false"
-      v-model="dialogBoxVisible"
       title="Searching for service provider..."
       width="80%" center>
     <div style="text-align: center">
       <img style="width: 40%;"
-          src="/images/order-searching.gif" alt="order-searching">
+           src="/images/order-searching.gif" alt="order-searching">
     </div>
     <template #footer>
-      <span class="dialog-footer">
-        <el-button
-            type="primary"
-            style="
-            width: 70%;
-            padding: 8px 12px;
-            border-radius: 8px;
-            background-color: #153051;
-            margin-bottom: 10px;
-          "
-            >Cancel Searching
-        </el-button>
-      </span>
+    <span class="dialog-footer">
+      <el-button
+          type="primary"
+          style="
+          width: 70%;
+          padding: 8px 12px;
+          border-radius: 8px;
+          background-color: #153051;
+          margin-bottom: 10px;
+        "
+      >Cancel Searching
+      </el-button>
+    </span>
     </template>
   </el-dialog>
 </template>
 
 <script setup>
+import useWaveMoneySDK from "~/composables/useWaveMoneySDK";
+import {authStore} from "~/stores/authStore";
+
 const route = useRoute()
-const { $axios } = useNuxtApp();
+const {$axios} = useNuxtApp();
 const config = useRuntimeConfig();
-const dialogBoxVisible = ref(true)
 const axiosHeaders = {
   headers: {
     Authorization: `Bearer ${localStorage.getItem("userToken")}`,
   },
 };
+const {makePayment} = useWaveMoneySDK()
+const authUser = authStore().getUserData
 const orderDetail = ref()
+const status = ref()
+const visibleModel = ref(true)
+
+const buttonText = ref();
+const formValue = ref();
+
+const updateForms = (status) => {
+  if (status == "OFFERED") {
+    if (orderDetail?.value.employer_id == authUser.id) {
+      buttonText.value = "";
+      formValue.value = "";
+    } else {
+      buttonText.value = "ACCEPT OFFER";
+      formValue.value = "ACCEPTED"
+    }
+
+  } else if (status == "ACCEPTED") {
+    if (orderDetail?.value.employer_id == authUser.id) {
+      buttonText.value = "PAY WITH WAVE";
+      formValue.value = "PAID";
+    } else {
+      buttonText.value = "";
+      formValue.value = ""
+    }
+  } else if (status == "PAID") {
+    if (orderDetail?.value.employer_id == authUser.id) {
+      buttonText.value = "FINISH ORDER";
+      formValue.value = "COMPLETED";
+    } else {
+      buttonText.value = "";
+      formValue.value = ""
+    }
+  }
+}
+
 
 const formatDate = (date) => {
-  const options = { year: "numeric", month: "short", day: "numeric" };
+  const options = {year: "numeric", month: "short", day: "numeric"};
   return new Date(date).toLocaleDateString("en-US", options);
 };
 
 const formatTime = (date) => {
-  const options = { hour: "numeric", minute: "numeric" };
+  const options = {hour: "numeric", minute: "numeric"};
   return new Date(date).toLocaleDateString("Rangoon", options);
 };
 const getOrderDetail = async () => {
   $axios.get(`${config.public.backendApi}/orders/${route.params.id}`, axiosHeaders)
       .then((response) => {
         orderDetail.value = response.data.data
+        status.value = orderDetail?.value.status
+        updateForms(orderDetail?.value.status)
       })
 }
 const numberFormat = (value) => {
@@ -126,8 +173,31 @@ const numberFormat = (value) => {
   }).format(value);
 }
 
+const goToBackend = async () => {
+
+  if (formValue.value == "PAID") {
+    const response = await makePayment(orderDetail?.value.total_price, "9784489866")
+    if (response) {
+
+      $axios.put(
+          `${config.public.backendApi}/orders/${orderDetail?.value.id}/status`, {status: formValue.value}, axiosHeaders
+      ).then((res) => {
+        orderDetail.value = res.data.data
+      })
+
+    }else {
+      alert("Something went wrong with wave payment")
+    }
+  } else {
+    $axios.put(
+        `${config.public.backendApi}/orders/${orderDetail?.value.id}/status`, {status: formValue.value}, axiosHeaders
+    ).then((res) => {
+      orderDetail.value = res.data.data
+    })
+  }
+}
+
 onMounted(async () => {
-  console.log("hellwoorld");
   await getOrderDetail()
 })
 
@@ -148,6 +218,7 @@ onMounted(async () => {
   background: #FFF;
   box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.10);
 }
+
 .balance-button {
   display: flex;
   justify-content: space-between;
@@ -162,6 +233,7 @@ onMounted(async () => {
     line-height: 150%;
   }
 }
+
 .service-summary {
   padding: 16px 20px;
   margin-bottom: 200px;
@@ -179,6 +251,7 @@ onMounted(async () => {
       margin: 0;
     }
   }
+
   .service-name {
     font-size: 14px;
     font-style: normal;
@@ -186,6 +259,7 @@ onMounted(async () => {
     line-height: 150%;
   }
 }
+
 .service-provider-detail, .service-date-time, .service-address {
   padding: 16px 20px;
   margin-top: 50px;
