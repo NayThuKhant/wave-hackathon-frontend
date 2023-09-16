@@ -58,16 +58,15 @@ export default function () {
         return response?.response.data
     }
 
-    const makePayment = async (amount, receiverMsisdn, orderId) => {
+    const makePayment = async (amount, receiverMsisdn) => {
 
         // TODO default value for testing without wave money sdk
         if (!amount && !receiverMsisdn && !orderId) {
             amount = 1000
             receiverMsisdn = '9784489866'
-            orderId = (Math.random() + 1).toString(36).substring(2);
-        }
 
-        alert(`Making payment of ${amount} MMK to ${receiverMsisdn} with order id ${orderId}`)
+        }
+        const orderId = (Math.random() + 1).toString(36).substring(2);
 
         await ensureWaveUserIsLoggedIn()
         const response = await window.WaveJsSDK.paymentModule?.makePayment(amount, receiverMsisdn, orderId)
