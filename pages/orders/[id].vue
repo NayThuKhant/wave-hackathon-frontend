@@ -129,16 +129,16 @@ const updateForms = (status) => {
       formValue.value = "ACCEPTED"
     }
 
-  } else if (status == "ACCEPTED") {
-    if (orderDetail?.value.employer_id == authUser.id) {
+  } else if (status === "ACCEPTED") {
+    if (orderDetail?.value.employer_id === authUser.id) {
       buttonText.value = "PAY WITH WAVE";
       formValue.value = "PAID";
     } else {
       buttonText.value = "";
       formValue.value = ""
     }
-  } else if (status == "PAID") {
-    if (orderDetail?.value.employer_id == authUser.id) {
+  } else if (status === "PAID") {
+    if (orderDetail?.value.employer_id === authUser.id) {
       buttonText.value = "FINISH ORDER";
       formValue.value = "COMPLETED";
     } else {
