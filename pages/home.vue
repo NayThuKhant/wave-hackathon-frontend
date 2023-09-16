@@ -40,7 +40,7 @@
         box-shadow: 4px -4px 12px 0 rgba(0, 0, 0, 0.1),
           -4px 4px 12px 0 rgba(0, 0, 0, 0.15);
         color: #153051;
-        width: 100%;
+        width: 95%;
         right: 50%;
         transform: translate(50%);
       "
