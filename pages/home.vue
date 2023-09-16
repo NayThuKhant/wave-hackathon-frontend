@@ -53,27 +53,6 @@
       <!--      <SearchBar></SearchBar>-->
       <Carousel></Carousel>
       <Services :providers="providers"></Services>
-      <el-alert
-          title="New Service Offer!"
-          type="success"
-          description="Checkout...You have got a new offer job!"
-          show-icon
-          style="
-          z-index: 999;
-          position: fixed;
-          bottom: 90px;
-          max-width: 440px;
-          padding: 20px 5px;
-          border-radius: 8px;
-          background: #fff;
-          box-shadow: 4px -4px 12px 0 rgba(0, 0, 0, 0.1),
-            -4px 4px 12px 0 rgba(0, 0, 0, 0.15);
-          color: #153051;
-          width: 95%;
-          right: 50%;
-          transform: translate(50%);
-        "
-      />
     </div>
   </div>
   <BaseFooter :active="'home'"></BaseFooter>
