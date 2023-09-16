@@ -35,7 +35,7 @@
           </div>
           <el-image src="/images/WaveMoneyLogoV2.svg"></el-image>
         </div>
-        <div v-if="user.employee && user.on_hold_balance">
+        <div v-if="user.employee">
           <el-divider style="margin: 0 auto"></el-divider>
           <div>
             <p class="balance-title" style="margin-top: 5px">OnHold Balance</p>
