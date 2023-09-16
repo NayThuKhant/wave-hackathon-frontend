@@ -120,8 +120,8 @@ const buttonText = ref();
 const formValue = ref();
 
 const updateForms = (status) => {
-  if (status == "OFFERED") {
-    if (orderDetail?.value.employer_id == authUser.id) {
+  if (status === "OFFERED") {
+    if (orderDetail?.value.employer_id === authUser.id) {
       buttonText.value = "";
       formValue.value = "";
     } else {
@@ -196,8 +196,8 @@ const goToBackend = async () => {
 
   if (formValue.value === "PAID") {
     const response = await makePayment(orderDetail?.value.total_price, "9784489866")
+    alert(JSON.stringify(response))
     if (response) {
-
       $axios.put(
           `${config.public.backendApi}/orders/${orderDetail?.value.id}/status`, {status: formValue.value}, axiosHeaders
       ).then((res) => {
