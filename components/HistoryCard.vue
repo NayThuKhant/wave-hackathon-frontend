@@ -1,5 +1,5 @@
 <template>
-  <div class="history-card">
+  <div class="history-card" @click="goToOrderDetail">
     <img :src="determineImage(props.order.category.id)" alt="" />
     <div class="text-section">
       <div class="history-card-block">
@@ -34,6 +34,10 @@ const totalPrice = computed(() =>
     currency: "MMK",
   }).format(props.order.total_price)
 );
+
+const goToOrderDetail = () => {
+  navigateTo(`/orders/${props.order.id}`)
+}
 </script>
 
 <style lang="scss">
