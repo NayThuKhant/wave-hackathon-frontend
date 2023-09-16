@@ -1,7 +1,7 @@
 <template>
   <TopHeader :to="'history'" :header="'Order Detail'" />
 
-  <div class="service-provider-detail">
+  <div class="service-provider-detail" v-if="orderDetail?.contact">
     <p class="header">Service Provider Detail</p>
     <p class="title">Name</p>
     <p class="data">{{ orderDetail?.contact.name }}</p>
@@ -127,6 +127,7 @@ const numberFormat = (value) => {
 }
 
 onMounted(async () => {
+  console.log("hellwoorld");
   await getOrderDetail()
 })
 
