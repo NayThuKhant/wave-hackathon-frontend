@@ -9,7 +9,7 @@ export default function () {
 
     const activeName = ref('first')
     const user = userStore.getUserData
-    const orders = ref([])
+    const services = ref([])
     const offers = ref([])
 
     const axiosHeaders = {
@@ -28,7 +28,7 @@ export default function () {
     };
 
     const setOrderData = async (response) => {
-        orders.value = response.data.data.services
+        services.value = response.data.data.services
         offers.value = response.data.data.offers
     }
 
@@ -53,7 +53,7 @@ export default function () {
         formatDate,
         handleClick,
         activeName,
-        orders,
+        services,
         fetOrderList,
         offers,
         determineImage

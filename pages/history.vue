@@ -6,29 +6,19 @@
     </div>
     <el-tabs v-model="activeName" stretch class="demo-tabs" @tab-click="handleClick">
       <el-tab-pane label="My Offers" name="first">
-        <template v-if="orders.length">
-          <HistoryCard
-              v-for="order in orders"
-              :key="order.id"
-              :workerName="order.employee.name"
-              :service="order.category.name"
-              :price="'10000'"
-              :date="formatDate(order.created_at)"
-              :image="determineImage(order.category.id)"
+        <template v-if="offers.length">
+         <HistoryCard
+              v-for="order in offers"
+              :order="order"
           />
         </template>
         <el-empty v-else image="/images/empty.svg" description="There is nothing to show yet !" />
       </el-tab-pane>
       <el-tab-pane label="My Services" name="second">
-        <template v-if="offers.length">
+        <template v-if="services.length">
           <HistoryCard
-              v-for="offer in offers"
-              :key="offer.id"
-              :workerName="offer.employer.name"
-              :service="offer.category.name"
-              :price="'13000'"
-              :date="formatDate(offer.created_at)"
-              :image="determineImage(offer.category.id)"
+              v-for="order in services"
+              :order="order"
           />
         </template>
         <el-empty v-else image="/images/empty.svg" description="There is nothing to show yet !" >
@@ -45,7 +35,7 @@
 <script setup>
 import useHistory from "~/composables/useHistory";
 
-const { user, formatDate, activeName, handleClick, orders, fetOrderList, offers, determineImage } = useHistory()
+const { user, formatDate, activeName, handleClick, services, fetOrderList, offers } = useHistory()
 
 onMounted(async () => {
   await fetOrderList()
