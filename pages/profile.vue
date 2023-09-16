@@ -33,7 +33,8 @@
         "
         >Settings</el-text
       >
-      <div class="setting">
+
+      <div class="setting" @click="startWorking">
         <el-text class="des-title"
           ><el-icon class="setting-icon"
             ><el-image src="/images/briefcase.svg" /></el-icon
@@ -47,7 +48,7 @@
             font-weight: 500;
             text-align: right;
             color: #3188e1;
-          " @click="startWorking">
+          ">
           JOIN
         </el-link
         >

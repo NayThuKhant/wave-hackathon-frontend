@@ -2,6 +2,7 @@
   <TopHeader :to="'profile'"></TopHeader>
   <div class="emp-profile-container">
     <div style="flex: 1">
+
       <el-text class="emp-header">Setup your employee profile</el-text>
       <el-text class="note-text"
         >Note: We will be using personal & KYC information directly from the
@@ -33,9 +34,8 @@
   </div>
 </template>
 
-<script setup scoped>
+<script setup>
 import useProfile from "~/composables/useProfile";
-import { ref } from "vue";
 
 const checkedServices = ref([]);
 const categories = ref([
@@ -52,6 +52,7 @@ const categories = ref([
     id: 1
   }
 ])
+
 
 const isDisabled = computed(() => checkedServices.value.length ? false : true)
 const { subscribeCategories } = useProfile();
@@ -83,7 +84,7 @@ const updateCategories = () => {
   font-size: 14px;
   font-weight: 500;
   color: #f44;
-  margin: 8px 0 16px 0;
+  margin: 16px 0;
   display: block;
   word-break: break-word;
 }
