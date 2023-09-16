@@ -61,7 +61,7 @@ export default function () {
     const makePayment = async (amount, receiverMsisdn, orderId) => {
 
         // TODO default value for testing without wave money sdk
-        if (amount && receiverMsisdn && orderId) {
+        if (!amount && !receiverMsisdn && !orderId) {
             amount = 1000
             receiverMsisdn = '9784489866'
             orderId = (Math.random() + 1).toString(36).substring(2);
