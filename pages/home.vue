@@ -44,7 +44,7 @@
           <el-divider style="margin: 0 auto"></el-divider>
           <div style="padding: 4px 0">
             <p class="balance-title">OnHold Balance</p>
-            <p class="balance-data">MMK {{ userProfile.on_hold_balance }}</p>
+            <p class="balance-data">{{ onHoldBalance }}</p>
           </div>
         </div>
       </div>
@@ -67,6 +67,7 @@ import useWaveMoneySDK from "~/composables/useWaveMoneySDK";
 
 
 const balance = ref();
+const onHoldBalance = ref(0);
 const {providers, fetchProviders} = useProvider();
 const {goToProviders} = useHome();
 const {userProfile, fetchMe} = useProfile()
@@ -80,6 +81,12 @@ onMounted(async () => {
   }).format(value);
 
   await fetchMe();
+
+  onHoldBalance.value = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "MMK",
+  }).format(userProfile.on_hold_balance);
+
   await fetchProviders();
 });
 
