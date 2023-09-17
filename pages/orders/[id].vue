@@ -82,21 +82,6 @@
       <img style="width: 40%;"
            src="/images/order-searching.gif" alt="order-searching">
     </div>
-    <template #footer>
-    <span class="dialog-footer">
-      <el-button
-          type="primary"
-          style="
-          width: 70%;
-          padding: 8px 12px;
-          border-radius: 8px;
-          background-color: #153051;
-          margin-bottom: 10px;
-        "
-      >Cancel Searching
-      </el-button>
-    </span>
-    </template>
   </el-dialog>
 </template>
 
@@ -122,8 +107,8 @@ const buttonText = ref();
 const formValue = ref();
 
 const updateForms = (status) => {
-  if (status == "OFFERED") {
-    if (orderDetail?.value.employer_id == authUser.id) {
+  if (status === "OFFERED") {
+    if (orderDetail?.value.employer_id === authUser.id) {
       buttonText.value = "";
       formValue.value = "";
     } else {
@@ -198,8 +183,8 @@ const goToBackend = async () => {
 
   if (formValue.value === "PAID") {
     const response = await makePayment(orderDetail?.value.total_price, "9784489866")
+    alert("PAYMENT SUCCESSFUL")
     if (response) {
-
       $axios.put(
           `${config.public.backendApi}/orders/${orderDetail?.value.id}/status`, {status: formValue.value}, axiosHeaders
       ).then((res) => {
