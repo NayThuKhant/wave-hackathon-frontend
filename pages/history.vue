@@ -13,7 +13,7 @@
               :key="order.id"
           />
         </template>
-        <el-empty v-else image="/images/empty.svg" description="There is nothing to show yet !" />
+        <el-empty :image-size="80" v-else image="/images/empty.svg" description="There is nothing to show yet !" />
       </el-tab-pane>
       <el-tab-pane label="My Services" name="second">
         <template v-if="services.length">
@@ -23,7 +23,7 @@
               :key="order.id"
           />
         </template>
-        <el-empty v-else image="/images/empty.svg" description="There is nothing to show yet !" >
+        <el-empty :image-size="80" v-else image="/images/empty.svg" description="There is nothing to show yet !" >
           <el-button @click="navigateTo('profile')" v-if="!user.employee" type="primary">
             Join Now !
           </el-button>

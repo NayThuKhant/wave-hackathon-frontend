@@ -7,7 +7,7 @@
           props.order.category.name
         }}</el-text>
         <!-- <div style="font-size: 14px;">{{ props.order.status }}</div> -->
-        <el-tag type="warning">{{ props.order.status }}</el-tag>
+        <el-tag :type="determineType(props.order.status)">{{ props.order.status }}</el-tag>
       </div>
       <div class="history-card-block">
         <div class="prize">{{ totalPrice }}</div>
@@ -28,6 +28,17 @@ const props = defineProps({
   },
 });
 
+const items = [
+    { type: 'success', label: 'COMPLETED' },
+    { type: 'info', label: 'ACCEPTED' },
+    { type: 'danger', label: 'PAID' },
+    { type: 'warning', label: 'OFFERED' },
+  ] 
+
+const determineType = (status) => {
+  let obj = items.find(obj => obj.label === status)
+  return obj ? obj.type : 'warning'
+}
 const totalPrice = computed(() =>
   new Intl.NumberFormat("en-US", {
     style: "currency",

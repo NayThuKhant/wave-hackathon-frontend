@@ -2,7 +2,7 @@
   <TopHeader :to="'/history'" :header="'Order Detail'"/>
 
   <div class="service-provider-detail" v-if="orderDetail?.contact">
-    <p class="header">Service Provider Detail</p>
+    <p class="header">Contact Information</p>
     <p class="title">Name</p>
     <p class="data">{{ orderDetail?.contact.name }}</p>
 
@@ -20,7 +20,7 @@
 
     <p class="title">Status</p>
     <p class="data">
-      <el-tag type="warning">{{ orderDetail?.status }}</el-tag>
+      <el-tag :type="determineType(orderDetail?.status)">{{ orderDetail?.status }}</el-tag>
     </p>
   </div>
   <div style="height: 8px; background-color: #F2F2F2"/>
@@ -97,6 +97,17 @@ const axiosHeaders = {
     Authorization: `Bearer ${localStorage.getItem("userToken")}`,
   },
 };
+const items = [
+    { type: 'success', label: 'COMPLETED' },
+    { type: 'info', label: 'ACCEPTED' },
+    { type: 'danger', label: 'PAID' },
+    { type: 'warning', label: 'OFFERED' },
+  ] 
+
+const determineType = (status) => {
+  let obj = items.find(obj => obj.label === status)
+  return obj ? obj.type : 'warning'
+}
 const {makePayment} = useWaveMoneySDK()
 const authUser = authStore().getUserData
 const orderDetail = ref()
