@@ -19,7 +19,7 @@ const {getWaveUserWalletBalance} = useWaveMoneySDK()
 const readyCheckoutToggle = async (data) => {
   const response = await getWaveUserWalletBalance()
   if(data.amount > response) {
-    ElMessageBox.alert('You dont have sufficient balance in Wave Pay Account, pls try again', 'Title')
+    ElMessageBox.alert('You dont have sufficient balance in Wave Pay Account, pls try again', 'Balance check!')
     return
   }
   isReadyCheckout.value = !isReadyCheckout.value

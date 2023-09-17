@@ -153,6 +153,11 @@ const startBooking = async () => {
     employee_id: null
   }
 
+  if(!realAddress.value || !dateForm.value.date || !dateForm.value.time) {
+    ElMessageBox.alert('Please fill the required fields!', 'Validation')
+    return
+  }
+
   if (isInteger(realAddress.value)) {
     data.address_id= realAddress.value
   } else {
