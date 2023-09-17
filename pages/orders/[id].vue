@@ -188,7 +188,13 @@ const goToBackend = async () => {
       $axios.put(
           `${config.public.backendApi}/orders/${orderDetail?.value.id}/status`, {status: formValue.value}, axiosHeaders
       ).then((res) => {
+        console.log(res)
         orderDetail.value = res.data.data
+        const id = route.params.id
+        reloadNuxtApp({
+          path: "/orders/" + id,
+          ttl: 1000, // default 10000
+        });
       })
 
     } else {
@@ -199,13 +205,14 @@ const goToBackend = async () => {
         `${config.public.backendApi}/orders/${orderDetail?.value.id}/status`, {status: formValue.value}, axiosHeaders
     ).then((res) => {
       orderDetail.value = res.data.data
+
+      const id = route.params.id
+      reloadNuxtApp({
+        path: "/orders/" + id,
+        ttl: 1000, // default 10000
+      });
     })
   }
-  const id = route.params.id
-  reloadNuxtApp({
-    path: "/orders/" + id,
-    ttl: 1000, // default 10000
-  });
 }
 
 onMounted(async () => {
