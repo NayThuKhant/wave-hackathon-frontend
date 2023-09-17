@@ -183,7 +183,6 @@ const goToBackend = async () => {
 
   if (formValue.value === "PAID") {
     const response = await makePayment(orderDetail?.value.total_price, "9784489866")
-    alert("PAYMENT SUCCESSFUL")
     if (response) {
       $axios.put(
           `${config.public.backendApi}/orders/${orderDetail?.value.id}/status`, {status: formValue.value}, axiosHeaders
