@@ -40,30 +40,33 @@
       </div>
     </div>
     <el-text class="service-text">Are You Interested?</el-text>
-    <el-card
-        shadow="never"
-        class="join-card"
-        style="
-        background: linear-gradient(98.72deg, #153660 32.37%, #45a1ff 87.71%);
-      "
-    >
-      <div style="display: flex; justify-content: center">
-        <div class="text-gp">
-          <el-text style="font-weight: 600">Start your career!</el-text>
-          <el-text
-          >There are varieties of part time jobs available. Start
-            now!
-          </el-text>
-          <el-link :underline="false" style="color: #ffffff">
-            Join Now
-            <el-icon>
-              <Position/>
-            </el-icon>
-          </el-link>
-        </div>
-        <img src="@/assets/images/service-girl.svg" alt=""/>
-      </div>
-    </el-card>
+    <el-image 
+        style="cursor: pointer;"
+        src="/images/career-banner.png" @click="goToService('profile')" />
+<!--    <el-card-->
+<!--        shadow="never"-->
+<!--        class="join-card"-->
+<!--        style="-->
+<!--        background: linear-gradient(98.72deg, #153660 32.37%, #45a1ff 87.71%);-->
+<!--      "-->
+<!--    >-->
+<!--      <div style="display: flex; justify-content: center">-->
+<!--        <div class="text-gp">-->
+<!--          <el-text style="font-weight: 600">Start your career!</el-text>-->
+<!--          <el-text-->
+<!--          >There are varieties of part time jobs available. Start-->
+<!--            now!-->
+<!--          </el-text>-->
+<!--          <el-link :underline="false" style="color: #ffffff">-->
+<!--            Join Now-->
+<!--            <el-icon>-->
+<!--              <Position/>-->
+<!--            </el-icon>-->
+<!--          </el-link>-->
+<!--        </div>-->
+<!--        <img src="@/assets/images/service-girl.svg" alt=""/>-->
+<!--      </div>-->
+<!--    </el-card>-->
   </div>
 </template>
 <script setup>

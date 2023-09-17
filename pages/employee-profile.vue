@@ -12,8 +12,8 @@
       <el-checkbox-group v-model="subscribedCategories" class="to-check-services">
         <el-checkbox v-for="category in categories" :label="category.label" class="check-service" :key="category.key"
           ><div style="display: flex; align-items: center">
-            <img src="@/assets/images/cleaning.svg" />
-            <span style="margin-left: 10px;">{{ category.text  }}</span>
+<!--            <img src="@/assets/images/cleaning.svg" />-->
+            <span>{{ category.text  }}</span>
           </div>
         </el-checkbox>
       </el-checkbox-group>
@@ -98,12 +98,11 @@ const updateCategories = () => {
   border: 0.5px solid var(--grayscale-gray-300, #ccc);
   background: #fff;
   display: flex;
-  padding: 24px 16px;
+  padding: 16px;
   align-items: center;
   flex-shrink: 0;
   margin-bottom: 16px;
   margin-right: 0;
-  display: flex;
   justify-content: space-between;
   width: 40%;
 }
@@ -111,7 +110,7 @@ const updateCategories = () => {
   padding: 0;
 }
 .profile-foo {
-  padding: 20px;
+  //padding: 20px;
   text-align: center;
   position: sticky;
   bottom: 0;

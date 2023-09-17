@@ -167,7 +167,7 @@ const startBooking = async () => {
 
 const setCurrentLocation = async () => {
   let add = await getWaveUserLocation()
-  address.value = "Dulwich, Pun Hlaing Estate Avenue"
+  address.value = "Dulwich, Golf Estate, Pun Hlaing Estate Avenue, Hlaing Thar Yar, Yangon."
   realAddress.value = add
   toggleDrawer()
 }

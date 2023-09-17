@@ -1,5 +1,5 @@
 <template>
-  <TopHeader :to="'home'" :header="'Order'"></TopHeader>
+  <TopHeader :to="'home'" :header="'Services'"></TopHeader>
   <div class="laundry-container">
     <!-- use this if the user has not chosen any item -->
     <ChooseItems

@@ -24,7 +24,7 @@
           />
         </template>
         <el-empty v-else image="/images/empty.svg" description="There is nothing to show yet !" >
-          <el-button v-if="!user.employee" type="primary">
+          <el-button @click="navigateTo('profile')" v-if="!user.employee" type="primary">
             Join Now !
           </el-button>
         </el-empty>

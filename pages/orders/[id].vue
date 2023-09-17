@@ -19,7 +19,9 @@
     <p class="data">{{ formatTime(orderDetail?.started_at) }}</p>
 
     <p class="title">Status</p>
-    <p class="data">{{ orderDetail?.status }}</p>
+    <p class="data">
+      <el-tag type="warning">{{ orderDetail?.status }}</el-tag>
+    </p>
   </div>
   <div style="height: 8px; background-color: #F2F2F2"/>
   <div class="service-address">
