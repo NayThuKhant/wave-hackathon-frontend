@@ -70,7 +70,7 @@ const calculateTotal = (item) => {
 const toogleCheckout = () => {
   store.setServices(order.value)
   store.setTotalAmount(totalAmount.value)
-  emits('setCheckoutReady')
+  emits('setCheckoutReady', {amount: totalAmount.value})
 }
 
 onMounted(async () => {

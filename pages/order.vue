@@ -11,9 +11,17 @@
   </div>
 </template>
 <script setup>
-const isReadyCheckout = ref(false)
+import useWaveMoneySDK from "~/composables/useWaveMoneySDK";
 
-const readyCheckoutToggle = () => {
+const isReadyCheckout = ref(false)
+const {getWaveUserWalletBalance} = useWaveMoneySDK()
+
+const readyCheckoutToggle = async (data) => {
+  const response = await getWaveUserWalletBalance()
+  if(data.amount > response) {
+    ElMessageBox.alert('You dont have sufficient balance in Wave Pay Account, pls try again', 'Title')
+    return
+  }
   isReadyCheckout.value = !isReadyCheckout.value
 }
 </script>
